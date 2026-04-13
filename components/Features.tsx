@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const features = [
   {
     title: "20,000+ Live Channels",
-    desc: "UK, EU, and worldwide channels with smooth HD and 4K streams where available.",
+    desc: "Regional, sports, and worldwide channels with smooth HD and 4K streams where available.",
     iconWrap: "bg-sky-500/15 text-sky-400 ring-sky-500/25",
     icon: (
       <path d="M12 3L4 9v12h16V9l-8-6zm0 2.2l5.5 4.1H6.5L12 5.2zM6 11h12v8H6v-8zm3 2v4h6v-4H9z" />
@@ -29,7 +29,7 @@ const features = [
   },
   {
     title: "Live Sports, News & Entertainment",
-    desc: "Premier League, PPV events, kids, cinema, and international news — all in one place.",
+    desc: "Major sports leagues, PPV events, kids, cinema, and international news — all in one place.",
     iconWrap: "bg-rose-500/15 text-rose-400 ring-rose-500/25",
     icon: (
       <path d="M4 6h16v12H4V6zm2 2v8h12V8H6zm2 2h8v4H8v-4z" />
@@ -44,7 +44,7 @@ const features = [
     ),
   },
   {
-    title: "Trusted UK IPTV Provider Since 2022",
+    title: "Trusted ScopMedia partner since 2022",
     desc: "Transparent plans, responsive support, and a subscriber-first approach you can rely on.",
     iconWrap: "bg-emerald-500/15 text-emerald-400 ring-emerald-500/25",
     icon: (
@@ -55,7 +55,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="iptv-uk" className="relative py-20 sm:py-24">
+    <section id="platform" className="relative py-20 sm:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.08),transparent_55%)]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -67,7 +67,7 @@ export default function Features() {
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Everything you expect from a premium IPTV UK service
+            Everything you expect from a premium ScopMedia experience
           </h2>
           <p className="mt-4 text-body">
             Performance, content depth, and support — engineered for real-world streaming.

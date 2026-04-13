@@ -13,23 +13,23 @@ export default function BlogContent() {
           transition={{ duration: 0.45 }}
         >
           <h2 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-            IPTV UK: How to Choose the Best IPTV Subscription in 2026
+            How to Choose the Best IPTV Subscription in 2026 with ScopMedia
           </h2>
           <p className="mt-6 text-base leading-relaxed text-body sm:text-lg">
-            The IPTV market moves fast. In 2026, the best IPTV subscription in the
-            UK is not just about channel count — it is about stream stability,
-            transparent pricing, device compatibility, and support you can actually
-            reach when kick-off is five minutes away.
+            The streaming landscape moves fast. In 2026, the best subscription is not
+            just about channel count — it is about stream stability, transparent
+            pricing, device compatibility, and support you can reach when it matters.
+            ScopMedia is built around those pillars.
           </p>
 
           <h3 className="mt-10 text-xl font-semibold text-white">
             Start with reliability, not hype
           </h3>
           <p className="mt-4 text-base leading-relaxed text-body">
-            Look for providers that publish realistic uptime expectations, offer
-            trial periods, and explain how traffic is routed during peak hours. A
-            premium IPTV UK service should feel boringly consistent: predictable
-            playback, clean audio, and quick recovery if a route degrades.
+            Look for providers that publish realistic uptime expectations, offer trial
+            periods, and explain how traffic is routed during peak hours. A premium
+            ScopMedia experience should feel consistently smooth: predictable playback,
+            clean audio, and quick recovery if a route degrades.
           </p>
 
           <h3 className="mt-10 text-xl font-semibold text-white">
@@ -54,16 +54,15 @@ export default function BlogContent() {
               <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-cyan" />
               <span>
                 <strong className="font-semibold text-white">Device workflow:</strong>{" "}
-                choose a provider with clear setup paths for Firestick, Smart TV, and
-                mobile — including recommended apps and sane defaults.
+                choose a service with clear setup paths for Firestick, Smart TV, and
+                mobile — including recommended apps and sensible defaults.
               </span>
             </li>
             <li className="flex gap-3">
               <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-cyan" />
               <span>
                 <strong className="font-semibold text-white">Support quality:</strong>{" "}
-                prioritise teams that respond in minutes, not days, especially during
-                live events.
+                prioritise teams that respond quickly, especially during live events.
               </span>
             </li>
             <li className="flex gap-3">
@@ -81,8 +80,8 @@ export default function BlogContent() {
           </h3>
           <p className="mt-4 text-base leading-relaxed text-body">
             Ask for a trial, test your exact devices, and measure performance at peak
-            times — evenings and weekends. The right subscription should feel
-            effortless on day one and stay dependable through the season.
+            times — evenings and weekends. The right ScopMedia plan should feel
+            effortless on day one and stay dependable all year.
           </p>
         </motion.div>
       </div>

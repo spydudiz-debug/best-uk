@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "IPTV UK | Best IPTV Subscription UK 2026",
+  title: "ScopMedia | Best IPTV Subscription in 2026",
   description:
-    "Premium IPTV UK service with 20,000+ channels, 130,000+ VOD, 99.9% uptime and 24/7 support. Works on Smart TV, Firestick & all devices.",
+    "ScopMedia — premium IPTV streaming worldwide. 20,000+ channels, 130,000+ VOD, 99.9% uptime and 24/7 support. Smart TV, Firestick, mobile & more.",
 };
 
 export default function RootLayout({

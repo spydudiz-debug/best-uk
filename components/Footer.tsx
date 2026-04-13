@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import ScopMediaLogo from "@/components/ScopMediaLogo";
 
 const subscriptions = [
   { label: "1 Month Plan", href: "#pricing" },
@@ -13,13 +14,13 @@ const subscriptions = [
 const quick = [
   { label: "Home", href: "#home" },
   { label: "Pricing", href: "#pricing" },
-  { label: "IPTV UK", href: "#iptv-uk" },
+  { label: "Platform", href: "#platform" },
   { label: "Setup Guide", href: "#setup" },
   { label: "Blog", href: "#blog" },
 ];
 
 const support = [
-  { label: "Contact", href: "mailto:support@iptvukprovider.example" },
+  { label: "Contact", href: "mailto:support@scopmedia.com" },
   { label: "WhatsApp", href: "https://wa.me/447000000000" },
   { label: "Status", href: "#home" },
 ];
@@ -30,17 +31,12 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="#home" className="flex items-center gap-2.5 text-white">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent-cyan/30 to-accent-purple/40 ring-1 ring-white/10">
-                <span className="text-sm font-bold text-accent-cyan">UK</span>
-              </span>
-              <span className="text-sm font-semibold tracking-[0.12em]">
-                IPTVUKPROVIDER
-              </span>
+            <Link href="#home" className="inline-block text-white">
+              <ScopMediaLogo iconSize={40} />
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-body">
-              Premium IPTV UK streaming with transparent plans, multi-device
-              flexibility, and support that stays responsive when it matters most.
+              ScopMedia is a leading IPTV service providing high-quality streaming,
+              live channels, and on-demand content worldwide.
             </p>
           </div>
 
@@ -98,7 +94,7 @@ export default function Footer() {
               whileTap={{ scale: 0.98 }}
               className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-gradient-cta py-3 text-sm font-semibold text-[#020617] shadow-glow sm:w-auto sm:px-6"
             >
-              Get Started
+              Start Free Trial
             </motion.a>
           </div>
         </div>
@@ -115,9 +111,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col items-center justify-between gap-4 text-xs text-body-muted sm:flex-row">
-          <p>
-            © {new Date().getFullYear()} IPTV UK Provider. All rights reserved.
-          </p>
+          <p>© {new Date().getFullYear()} ScopMedia. All rights reserved.</p>
           <div className="flex items-center gap-3">
             <span className="rounded-full border border-border-subtle bg-white/[0.03] px-2 py-0.5 text-[10px] font-mono text-body-muted">
               v2.0

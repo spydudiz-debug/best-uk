@@ -5,28 +5,28 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "What is the best IPTV subscription in the UK?",
-    a: "The best IPTV subscription depends on your devices, viewing habits, and need for support. Look for high uptime, transparent multi-connection pricing, strong sports and VOD catalogues, and UK-based assistance. Always validate with a short trial on your own network before committing long term.",
+    q: "What makes ScopMedia a strong choice for streaming in 2026?",
+    a: "ScopMedia focuses on uptime, transparent multi-connection pricing, a deep channel and VOD catalogue, and responsive human support. Always validate performance with a short trial on your own network before committing long term.",
   },
   {
-    q: "Does IPTV service buffer?",
-    a: "Occasional buffering can happen on any streaming stack, but a well-run provider minimises it with optimised routes, capacity planning, and rapid maintenance. Use wired connections where possible, keep apps updated, and avoid overloading your link with many simultaneous 4K streams.",
+    q: "Does live streaming ever buffer?",
+    a: "Occasional buffering can happen on any streaming stack, but a well-run service minimises it with optimised routes, capacity planning, and rapid maintenance. Use wired connections where possible, keep apps updated, and avoid overloading your link with many simultaneous 4K streams.",
   },
   {
-    q: "Which IPTV works best on Firestick?",
-    a: "Firestick works great with popular players like IPTV Smarters and TiviMate when configured correctly. Choose providers that publish Firestick setup guides, offer compatible playlists/portals, and help tune buffer and hardware decoding settings for smoother playback.",
+    q: "Which setup works best on Firestick?",
+    a: "Firestick works great with popular players like Smarters and TiviMate when configured correctly. ScopMedia provides Firestick-friendly setup guidance, compatible playlists or portals, and help tuning buffer and hardware decoding for smoother playback.",
   },
   {
     q: "Do I need a VPN?",
     a: "A VPN is not always required, but some subscribers use one for privacy on public networks or when their ISP path is unstable. If you use a VPN, pick a fast server close to you and verify speeds — routing through distant regions can reduce throughput.",
   },
   {
-    q: "Can I use IPTV on multiple TVs at once?",
-    a: "Yes, if your plan includes multiple connections. Each active stream typically consumes one connection. Households with parallel viewing should size their plan accordingly to avoid interruptions during peak hours.",
+    q: "Can I stream on multiple TVs at once?",
+    a: "Yes, if your ScopMedia plan includes multiple connections. Each active stream typically consumes one connection. Households with parallel viewing should size their plan accordingly to avoid interruptions during peak hours.",
   },
   {
     q: "How fast does activation happen?",
-    a: "Most subscriptions activate quickly after payment confirmation. You will receive app-friendly credentials and setup instructions. If you need migration from another provider, support can usually assist with a clean handover.",
+    a: "Most ScopMedia subscriptions activate quickly after payment confirmation. You receive app-friendly credentials and setup instructions. If you need migration from another provider, support can usually assist with a clean handover.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function FAQ() {
         </motion.h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-body">
           Straight answers about performance, devices, VPNs, and what to expect from
-          a modern IPTV UK subscription.
+          ScopMedia.
         </p>
 
         <div className="mt-12 flex flex-col gap-3">

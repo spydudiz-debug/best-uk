@@ -43,8 +43,8 @@ const devices = [
 
 const cards = [
   {
-    title: "Smart IPTV Apps",
-    desc: "Install trusted UK IPTV apps on your TV in minutes with step-by-step guides.",
+    title: "Smart Streaming Apps",
+    desc: "Install leading streaming apps on your TV in minutes with step-by-step guides.",
     gradient: "from-cyan-500/25 to-slate-900/90",
     border: "border-cyan-500/25",
     icon: (
@@ -52,7 +52,7 @@ const cards = [
     ),
   },
   {
-    title: "IPTV Smarters Pro",
+    title: "Smarters Pro",
     desc: "A polished player experience with EPG, catch-up, and multi-screen layouts.",
     gradient: "from-violet-600/30 to-slate-900/90",
     border: "border-violet-500/30",
@@ -100,7 +100,7 @@ export default function DeviceSupport() {
           transition={{ duration: 0.45 }}
           className="mx-auto max-w-4xl text-center text-3xl font-bold tracking-tight text-white sm:text-4xl"
         >
-          Works on Smart TV, Firestick &amp; All IPTV Boxes
+          Works on Smart TV, Firestick &amp; Streaming Devices
         </motion.h2>
 
         <motion.div

@@ -7,15 +7,15 @@ const testimonials = [
     quote:
       "Switched after months of flaky streams elsewhere. Picture is stable on match days and the team actually replies on WhatsApp — huge upgrade.",
     name: "James R.",
-    place: "Manchester, UK",
+    place: "Toronto, Canada",
     initial: "JR",
     tint: "from-sky-500/40 to-cyan-400/30",
   },
   {
     quote:
-      "Firestick setup took under ten minutes with their guide. EPG is accurate and the VOD library is deeper than I expected for the price.",
+      "Firestick setup took under ten minutes with their guide. EPG is accurate and the on-demand library is deeper than I expected for the price.",
     name: "Aisha K.",
-    place: "Birmingham, UK",
+    place: "Berlin, Germany",
     initial: "AK",
     tint: "from-violet-500/40 to-fuchsia-500/30",
   },
@@ -23,7 +23,7 @@ const testimonials = [
     quote:
       "We run three TVs at home — no more arguing over bandwidth. Connections work as advertised and renewals are straightforward.",
     name: "Daniel M.",
-    place: "London, UK",
+    place: "São Paulo, Brazil",
     initial: "DM",
     tint: "from-emerald-500/40 to-teal-500/30",
   },
@@ -40,7 +40,7 @@ export default function Testimonials() {
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Trusted by 10,000+ UK Subscribers
+            Trusted by 10,000+ ScopMedia subscribers
           </h2>
           <p className="mt-4 text-body">
             Real households. Real devices. Results you can feel during primetime.

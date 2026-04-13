@@ -7,7 +7,7 @@ const stats = [
   { value: "20,000+", label: "Channels" },
   { value: "130,000+", label: "VOD Titles" },
   { value: "99.9%", label: "Uptime" },
-  { value: "24/7", label: "UK Support" },
+  { value: "24/7", label: "Support" },
 ];
 
 export default function Hero() {
@@ -28,7 +28,7 @@ export default function Hero() {
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent-cyan/35 bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-white/90 backdrop-blur-sm sm:text-sm"
           >
             <span aria-hidden>🔥</span>
-            <span>Best IPTV UK Service 2026</span>
+            <span>Premium Streaming — ScopMedia 2026</span>
           </motion.div>
 
           <motion.h1
@@ -38,9 +38,9 @@ export default function Hero() {
             className="text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.25rem] lg:leading-[1.06]"
           >
             <span className="bg-gradient-cyan-purple bg-clip-text text-transparent">
-              IPTV UK
+              ScopMedia
             </span>{" "}
-            <span className="text-white">| Best IPTV Subscription UK 2026</span>
+            <span className="text-white">| Best IPTV Subscription in 2026</span>
           </motion.h1>
 
           <motion.p
@@ -49,9 +49,10 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.12 }}
             className="mt-5 max-w-xl text-base leading-relaxed text-body sm:text-lg"
           >
-            Stream live UK & international channels in crystal-clear HD and 4K.
-            Built for reliability, packed with sports, movies, and box sets — with
-            instant activation and human support when you need it.
+            Premium IPTV Streaming Experience by ScopMedia. Stream live channels
+            worldwide in crystal-clear HD and 4K — built for reliability, with sports,
+            movies, and on-demand libraries plus instant activation and responsive
+            support when you need it.
           </motion.p>
 
           <motion.div
@@ -82,7 +83,7 @@ export default function Hero() {
               whileTap={{ scale: 0.98 }}
               className="inline-flex h-12 min-h-[48px] items-center justify-center rounded-full bg-gradient-cta px-8 text-sm font-semibold text-[#020617] shadow-glow ring-1 ring-white/10 sm:px-10"
             >
-              Get Free Trial
+              Start Free Trial
             </motion.a>
             <motion.a
               href="#pricing"

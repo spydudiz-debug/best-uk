@@ -38,7 +38,7 @@ const featureLines = [
   "EPG + catch-up (where available)",
   "Anti-freeze optimised routes",
   "Instant activation",
-  "24/7 UK support",
+  "24/7 global support",
 ];
 
 function formatMoney(n: number) {
@@ -73,12 +73,12 @@ export default function Pricing() {
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[2.5rem]">
-            IPTV UK Plans &amp; Pricing
+            ScopMedia Plans &amp; Pricing
           </h2>
           <p className="mt-4 text-base text-body sm:text-lg">
             Pick Standard for everyday streaming, or Premium for higher bitrates
             and priority support. Select your connections — pricing scales fairly per
-            screen.
+            screen with ScopMedia.
           </p>
         </motion.div>
 
@@ -200,7 +200,7 @@ export default function Pricing() {
                       Order via WhatsApp
                     </motion.a>
                     <motion.a
-                      href="mailto:support@iptvukprovider.example"
+                      href="mailto:support@scopmedia.com"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className="inline-flex h-11 items-center justify-center rounded-full bg-gradient-to-r from-accent-cyan to-sky-600 px-4 text-sm font-semibold text-[#020617] shadow-glow-sm ring-1 ring-white/10"

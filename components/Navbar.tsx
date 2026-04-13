@@ -3,11 +3,12 @@
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import ScopMediaLogo from "@/components/ScopMediaLogo";
 
 const links = [
   { href: "#home", label: "Home" },
   { href: "#pricing", label: "Pricing" },
-  { href: "#iptv-uk", label: "IPTV UK" },
+  { href: "#platform", label: "Platform" },
   { href: "#setup", label: "Setup Guide" },
   { href: "#blog", label: "Blog" },
 ];
@@ -35,17 +36,10 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
         <Link
           href="#home"
-          className="flex items-center gap-2.5 text-white"
+          className="text-white"
           onClick={() => setOpen(false)}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent-cyan/30 to-accent-purple/40 shadow-glow-sm ring-1 ring-white/10">
-            <span className="text-lg font-bold tracking-tight text-accent-cyan">
-              UK
-            </span>
-          </span>
-          <span className="text-sm font-semibold tracking-[0.12em]">
-            IPTVUKPROVIDER
-          </span>
+          <ScopMediaLogo iconSize={36} />
         </Link>
 
         <ul className="hidden items-center gap-8 text-sm font-medium text-white/90 md:flex">
@@ -68,7 +62,7 @@ export default function Navbar() {
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center justify-center rounded-full bg-gradient-cta px-5 py-2.5 text-sm font-semibold text-[#020617] shadow-glow ring-1 ring-white/10"
           >
-            Free Trial
+            Start Free Trial
           </motion.a>
         </div>
 
@@ -121,7 +115,7 @@ export default function Navbar() {
                 className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-gradient-cta py-3 text-center text-sm font-semibold text-[#020617] shadow-glow"
                 onClick={() => setOpen(false)}
               >
-                Free Trial
+                Start Free Trial
               </a>
             </li>
           </ul>
