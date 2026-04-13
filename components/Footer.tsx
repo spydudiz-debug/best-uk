@@ -14,17 +14,17 @@ const subscriptions = [
 ];
 
 const quick = [
-  { label: "Home", href: "#home" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Platform", href: "#platform" },
-  { label: "Setup Guide", href: "#setup" },
-  { label: "Blog", href: "#blog" },
+  { label: "Home", href: "/#home" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Platform", href: "/#platform" },
+  { label: "Setup Guide", href: "/setup-guide" },
+  { label: "Blog", href: "/#blog" },
 ];
 
 const support = [
   { label: "Contact", href: "mailto:support@scopmedia.com" },
   { label: "WhatsApp", href: "https://wa.me/447000000000" },
-  { label: "Status", href: "#home" },
+  { label: "Status", href: "/#home" },
 ];
 
 export default function Footer() {
@@ -33,7 +33,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="#home" className="inline-block text-white">
+            <Link href="/#home" className="inline-block text-white">
               <ScopMediaLogo iconSize={40} />
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-body">

@@ -7,11 +7,11 @@ import ScopMediaLogo from "@/components/ScopMediaLogo";
 import { SITE_URLS, externalTabProps } from "@/lib/site-urls";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#platform", label: "Platform" },
-  { href: "#setup", label: "Setup Guide" },
-  { href: "#blog", label: "Blog" },
+  { href: "/#home", label: "Home" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/#platform", label: "Platform" },
+  { href: "/setup-guide", label: "Setup Guide" },
+  { href: "/#blog", label: "Blog" },
 ];
 
 export default function Navbar() {
@@ -36,7 +36,7 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
         <Link
-          href="#home"
+          href="/#home"
           className="text-white"
           onClick={() => setOpen(false)}
         >
