@@ -5,6 +5,11 @@ import { useMemo, useState } from "react";
 
 type Tier = "standard" | "premium";
 
+const TIER_LABELS: Record<Tier, string> = {
+  standard: "IPTV Subscription",
+  premium: "IPTV Reseller",
+};
+
 const basePlans = [
   {
     id: "1m",
@@ -47,18 +52,15 @@ function formatMoney(n: number) {
 
 export default function Pricing() {
   const [tier, setTier] = useState<Tier>("standard");
-  const [connections, setConnections] = useState(1);
 
   const multiplier = tier === "premium" ? 1.15 : 1;
 
   const plans = useMemo(() => {
     return basePlans.map((p) => ({
       ...p,
-      display: Number(
-        (p.price * connections * multiplier).toFixed(2),
-      ),
+      display: Number((p.price * multiplier).toFixed(2)),
     }));
-  }, [connections, multiplier]);
+  }, [multiplier]);
 
   return (
     <section id="pricing" className="relative scroll-mt-28 py-20 sm:py-28">
@@ -76,9 +78,8 @@ export default function Pricing() {
             ScopMedia Plans &amp; Pricing
           </h2>
           <p className="mt-4 text-base text-body sm:text-lg">
-            Pick Standard for everyday streaming, or Premium for higher bitrates
-            and priority support. Select your connections — pricing scales fairly per
-            screen with ScopMedia.
+            Choose IPTV Subscription for everyday streaming, or IPTV Reseller for
+            higher bitrates and priority support with ScopMedia.
           </p>
         </motion.div>
 
@@ -87,15 +88,15 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.08 }}
-          className="mx-auto mt-10 flex flex-col items-center gap-6"
+          className="mx-auto mt-10 flex justify-center"
         >
-          <div className="inline-flex rounded-full border border-border-subtle bg-white/[0.04] p-1 backdrop-blur-md">
+          <div className="inline-flex max-w-full rounded-full border border-border-subtle bg-white/[0.04] p-1 backdrop-blur-md">
             {(["standard", "premium"] as const).map((t) => (
               <button
                 key={t}
                 type="button"
                 onClick={() => setTier(t)}
-                className={`relative rounded-full px-6 py-2 text-sm font-semibold transition ${
+                className={`relative min-w-0 rounded-full px-3 py-2 text-center text-xs font-semibold transition sm:px-5 sm:text-sm ${
                   tier === t ? "text-[#020617]" : "text-body hover:text-white"
                 }`}
               >
@@ -106,39 +107,21 @@ export default function Pricing() {
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
-                <span className="relative z-10 capitalize">{t}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            <span className="mr-1 hidden text-sm text-body-muted sm:inline">
-              Connections
-            </span>
-            {[1, 2, 3, 4, 5].map((n) => (
-              <button
-                key={n}
-                type="button"
-                onClick={() => setConnections(n)}
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
-                  connections === n
-                    ? "border-emerald-500/50 bg-emerald-500/15 text-emerald-300 shadow-[0_0_24px_rgba(16,185,129,0.2)]"
-                    : "border-border-subtle bg-white/[0.03] text-body hover:border-white/15 hover:text-white"
-                }`}
-              >
-                {n} Device{n > 1 ? "s" : ""}
+                <span className="relative z-10 whitespace-nowrap">
+                  {TIER_LABELS[t]}
+                </span>
               </button>
             ))}
           </div>
         </motion.div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-4 lg:items-end">
+        <div className="mt-12 grid gap-6 lg:grid-cols-4 lg:items-end">
           <AnimatePresence mode="popLayout">
             {plans.map((plan) => {
               const popular = "popular" in plan && plan.popular;
               return (
                 <motion.article
-                  key={`${plan.id}-${tier}-${connections}`}
+                  key={`${plan.id}-${tier}`}
                   layout
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -168,8 +151,9 @@ export default function Pricing() {
                     </motion.span>
                   </div>
                   <p className="mt-2 text-xs text-body-muted">
-                    {tier === "premium" ? "Premium tier" : "Standard tier"} ·{" "}
-                    {connections} connection{connections > 1 ? "s" : ""}
+                    {tier === "premium"
+                      ? "IPTV Reseller tier"
+                      : "IPTV Subscription tier"}
                   </p>
 
                   <ul className="mt-6 flex flex-col gap-3 text-sm text-body">
