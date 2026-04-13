@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { SITE_URLS, externalTabProps } from "@/lib/site-urls";
 
+const HERO_BADGE_TEXT = "Premium IPTV Reseller With ScopMedia 2026";
+
 const stats = [
   { value: "20,000+", label: "Channels" },
   { value: "130,000+", label: "VOD Titles" },
@@ -29,7 +31,7 @@ export default function Hero() {
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent-cyan/35 bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-white/90 backdrop-blur-sm sm:text-sm"
           >
             <span aria-hidden>🔥</span>
-            <span>Premium Streaming — ScopMedia 2026</span>
+            <span>{HERO_BADGE_TEXT}</span>
           </motion.div>
 
           <motion.h1
