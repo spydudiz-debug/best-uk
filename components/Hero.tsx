@@ -105,7 +105,7 @@ export default function Hero() {
           <div className="relative group w-full max-w-[520px]">
             <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-[0_0_40px_rgba(0,229,255,0.15)] transition-transform duration-500 group-hover:scale-105">
               <Image
-                src="/hero-new.png"
+                src="/hero-new.jpg"
                 alt="ScopMedia IPTV Streaming"
                 width={520}
                 height={320}
