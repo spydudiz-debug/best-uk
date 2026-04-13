@@ -1,256 +1,332 @@
 /**
- * SEO-oriented copy for the Setup Guide (#setup) section.
+ * IPTV setup guides — listing cards + full detail pages.
  * Keywords: IPTV setup guide, how to install IPTV, IPTV on Firestick, etc.
  */
 
-export type SetupGuideDevice = {
-  id: string;
-  /** Card heading + accordion H3 */
-  title: string;
-  /** One-line intro under title (meta-friendly) */
-  summary: string;
-  /** Shown inside accordion as lead */
-  guideIntro: string;
-  /** H2-style line inside panel (visible to users & outline) */
-  guideHeading: string;
+export const SETUP_GUIDE_SLUGS = [
+  "firestick",
+  "smart-tv",
+  "android-box",
+  "windows-pc",
+  "formuler",
+] as const;
+
+export type SetupGuideSlug = (typeof SETUP_GUIDE_SLUGS)[number];
+
+/** Visual key for `SetupGuideDeviceVisual` (unchanged asset ids) */
+export type SetupGuideVisualId = "firestick" | "smart-tv" | "android-box" | "windows" | "formuler";
+
+export type SetupGuidePageContent = {
+  metaTitle: string;
+  metaDescription: string;
+  /** Shown under H1; include natural keywords */
+  intro: string;
+  /** Used in H1 after "How to Set Up IPTV on …" */
+  h1DeviceName: string;
+  requirements: string[];
+  /** Five fixed step titles with device-specific bullets */
   steps: {
     title: string;
     bullets: string[];
   }[];
-  /** Optional screenshot placeholders (labels only) */
-  screenshotHints?: string[];
+  troubleshooting: string[];
+  tips: string[];
 };
+
+export type SetupGuideDevice = {
+  id: SetupGuideVisualId;
+  slug: SetupGuideSlug;
+  title: string;
+  summary: string;
+  page: SetupGuidePageContent;
+};
+
+const STEP_TITLES = [
+  "Step 1: Install IPTV app",
+  "Step 2: Open app",
+  "Step 3: Enter Xtream Codes or M3U",
+  "Step 4: Load channels",
+  "Step 5: Start streaming",
+] as const;
+
+function steps(
+  bulletsPerStep: [string[], string[], string[], string[], string[]]
+): SetupGuidePageContent["steps"] {
+  return STEP_TITLES.map((title, i) => ({
+    title,
+    bullets: bulletsPerStep[i],
+  }));
+}
 
 export const SETUP_GUIDES: SetupGuideDevice[] = [
   {
     id: "firestick",
+    slug: "firestick",
     title: "Amazon Firestick / Fire TV",
     summary:
-      "Step-by-step IPTV setup on Firestick: install IPTV Smarters or similar, enable Unknown Sources, and log in with Xtream Codes or M3U.",
-    guideIntro:
-      "This IPTV setup guide walks you through how to install IPTV on Firestick and Fire TV sticks safely. Follow each step in order for the smoothest experience.",
-    guideHeading: "How to Set Up IPTV on Amazon Firestick / Fire TV",
-    steps: [
-      {
-        title: "Step 1: Prepare your Fire TV device",
-        bullets: [
-          "Open Settings → My Fire TV → Developer options.",
-          "Turn on Apps from Unknown Sources (or enable the specific app you will use, on newer OS versions).",
-          "Install the Downloader app from the Amazon Appstore (search “Downloader”).",
+      "IPTV on Firestick: enable Unknown Sources, install via Downloader, then log in with Xtream Codes or M3U.",
+    page: {
+      metaTitle: "IPTV on Firestick — Setup Guide | ScopMedia",
+      metaDescription:
+        "IPTV setup guide for Amazon Fire TV & Firestick: Unknown Sources, Downloader, IPTV Smarters, Xtream Codes or M3U. Step-by-step Firestick IPTV instructions.",
+      intro:
+        "This IPTV setup guide covers IPTV on Firestick and Fire TV: how to install IPTV safely with Downloader, enable installs from unknown sources where needed, and complete your Xtream Codes or M3U login for ScopMedia.",
+      h1DeviceName: "Amazon Firestick / Fire TV",
+      requirements: [
+        "Amazon Fire TV Stick, Fire TV Cube, or compatible Fire OS device",
+        "Stable Wi‑Fi (or Ethernet adapter where supported)",
+        "Active ScopMedia IPTV subscription with Xtream Codes API or M3U playlist details",
+        "Downloader app from the Amazon Appstore (for sideloading APKs)",
+      ],
+      steps: steps([
+        [
+          "Enable Unknown Sources (or per-app install permission): Settings → My Fire TV → Developer options.",
+          "Install Downloader from the Amazon Appstore.",
+          "In Downloader, enter the URL provided by ScopMedia for IPTV Smarters Pro (or your chosen IPTV app) and install the APK.",
         ],
-      },
-      {
-        title: "Step 2: Install your IPTV app",
-        bullets: [
-          "Open Downloader and enter the URL provided by ScopMedia for IPTV Smarters Pro (or your chosen player).",
-          "Download and install the APK, then open the app from Your Apps & Channels.",
+        [
+          "Open the IPTV app from Your Apps & Channels (or App Library).",
+          "If prompted, allow storage or network access so the app can save profiles and load playlists.",
         ],
-      },
-      {
-        title: "Step 3: Choose login method",
-        bullets: [
-          "Open the app and select Login with Xtream Codes API or Load with M3U URL — use the method your subscription uses.",
+        [
+          "Choose Login with Xtream Codes API or Load with M3U URL — match the format ScopMedia sent you.",
+          "Enter server URL, username, and password exactly (no extra spaces). For M3U, paste the full playlist link.",
         ],
-      },
-      {
-        title: "Step 4: Enter login details",
-        bullets: [
-          "Enter your username, password, and server URL exactly as supplied (no extra spaces).",
-          "If using M3U, paste the full playlist URL and name your list.",
+        [
+          "Save the profile and wait for categories and channels to load — first sync may take several minutes.",
+          "If categories are empty, recheck credentials or VPN/firewall settings on your network.",
         ],
-      },
-      {
-        title: "Step 5: Load channels & stream",
-        bullets: [
-          "Wait for categories and channels to load — first sync can take a few minutes.",
-          "Pick a channel and start streaming. Reboot the stick if the app freezes after a large update.",
+        [
+          "Pick a channel and start streaming.",
+          "If the app freezes after a big update, restart the Firestick from Settings → My Fire TV → Restart.",
         ],
-      },
-    ],
-    screenshotHints: ["Downloader search screen", "IPTV app login screen"],
+      ]),
+      troubleshooting: [
+        "App won’t install: confirm Unknown Sources / install permission for Downloader, then retry the APK download.",
+        "Login failed: verify username, password, and server URL; copy-paste instead of typing when possible.",
+        "Buffering: use 5 GHz Wi‑Fi, move the router closer, or lower the stream quality in the app settings.",
+        "Black screen: update the IPTV app, clear app cache (if available), or reinstall the app.",
+      ],
+      tips: [
+        "Keep Fire OS updated for better codec support and security.",
+        "Pin the IPTV app to the home row for quicker access.",
+        "Use a wired Ethernet adapter on Fire TV Cube or models that support it for the most stable playback.",
+      ],
+    },
   },
   {
     id: "smart-tv",
+    slug: "smart-tv",
     title: "Smart TV (Samsung, LG, Sony)",
     summary:
-      "How to install IPTV on Smart TV: use Samsung Tizen, LG WebOS, or Android TV app stores to add IPTV Smarters, Smart IPTV, or similar apps.",
-    guideIntro:
-      "Samsung, LG, and Sony Smart TVs each use different stores (Tizen, WebOS, Google TV). This guide covers the common IPTV setup path for all three.",
-    guideHeading: "How to Set Up IPTV on Samsung, LG & Sony Smart TVs",
-    steps: [
-      {
-        title: "Step 1: Open your TV’s app store",
-        bullets: [
-          "Samsung (Tizen): Samsung App Store / Apps.",
-          "LG (webOS): LG Content Store.",
-          "Sony (Google TV / Android TV): Google Play Store.",
+      "Install IPTV from your TV’s app store (Samsung, LG Content Store, or Google TV) and sign in with Xtream or M3U.",
+    page: {
+      metaTitle: "IPTV on Smart TV (Samsung, LG, Sony) — Setup Guide | ScopMedia",
+      metaDescription:
+        "How to install IPTV on Smart TV: Samsung Tizen, LG webOS, Sony Google TV. App store install, Xtream Codes or M3U, and streaming tips.",
+      intro:
+        "Learn how to install IPTV on Smart TV sets from Samsung, LG, and Sony. This IPTV setup guide walks through the correct app store, Xtream Codes or M3U entry, and playback on the big screen.",
+      h1DeviceName: "Smart TV (Samsung, LG, Sony)",
+      requirements: [
+        "Samsung (Tizen), LG (webOS), or Sony (Google TV / Android TV) with current firmware",
+        "Working remote or keyboard for long URLs and passwords",
+        "ScopMedia credentials (Xtream Codes API or M3U URL)",
+        "IPTV app available in your region’s store (or sideload path if supported)",
+      ],
+      steps: steps([
+        [
+          "Open your TV’s app store: Samsung App Store, LG Content Store, or Google Play on Sony/Android TVs.",
+          "Search for IPTV Smarters Pro, Smart IPTV, or the app name ScopMedia recommends.",
+          "Install the IPTV app and wait for installation to finish.",
         ],
-      },
-      {
-        title: "Step 2: Install an IPTV app",
-        bullets: [
-          "Search for IPTV Smarters Pro, Smart IPTV, or the app name ScopMedia recommends for your region.",
-          "Install and launch the application.",
+        [
+          "Launch the app from the apps list or home launcher.",
+          "Accept terms and any permission prompts needed for network access.",
         ],
-      },
-      {
-        title: "Step 3: Select login method",
-        bullets: [
-          "Choose Xtream Codes API, M3U URL, or Portal depending on your subscription format.",
+        [
+          "Select Xtream Codes API, M3U URL, or Portal depending on your subscription.",
+          "Enter username, password, and server URL using the on-screen keyboard — go slowly to avoid typos.",
         ],
-      },
-      {
-        title: "Step 4: Enter credentials",
-        bullets: [
-          "Type your username, password, and server URL carefully using the on-screen keyboard.",
-          "Save the profile and allow the app to download the channel list.",
+        [
+          "Confirm and let the app download the channel and VOD lists.",
+          "If progress stalls, check internet speed and retry from the app’s settings menu.",
         ],
-      },
-      {
-        title: "Step 5: Start streaming",
-        bullets: [
-          "Browse categories, open the EPG if available, and play a channel.",
-          "If the app is not listed in your store, your TV may support sideloading via USB or a linked phone — contact support for model-specific help.",
+        [
+          "Browse categories or EPG and start streaming.",
+          "For regional store limits, contact ScopMedia about supported apps or alternate install methods for your model.",
         ],
-      },
-    ],
-    screenshotHints: ["App store search", "Xtream login form on TV"],
+      ]),
+      troubleshooting: [
+        "App not in store: your TV model or region may differ — try another approved app or ask support for a compatible package.",
+        "Keyboard errors: use a USB or Bluetooth keyboard if the TV supports it for long URLs.",
+        "Playback stutter: use Ethernet (if available), or reduce resolution in the app.",
+      ],
+      tips: [
+        "Enable automatic app updates so IPTV players stay compatible with new codecs.",
+        "Place the TV on a wired connection when possible for 4K or high-bitrate channels.",
+      ],
+    },
   },
   {
     id: "android-box",
+    slug: "android-box",
     title: "Android Box / TV Box",
     summary:
-      "IPTV setup on Android TV boxes: install from Google Play or sideload an APK, then add your Xtream or M3U details.",
-    guideIntro:
-      "Android boxes offer flexible IPTV installation — ideal if you want a dedicated streaming device with Play Store or manual APK installs.",
-    guideHeading: "How to Set Up IPTV on an Android TV Box",
-    steps: [
-      {
-        title: "Step 1: Enable installation",
-        bullets: [
-          "Open Settings → Security (or Privacy) and allow Install unknown apps for your browser or file manager if you sideload APKs.",
-          "Prefer Google Play when the IPTV app is listed there.",
+      "Use Google Play or sideload an APK on your Android TV box, then add Xtream Codes or M3U for IPTV.",
+    page: {
+      metaTitle: "IPTV on Android TV Box — Setup Guide | ScopMedia",
+      metaDescription:
+        "IPTV setup guide for Android boxes: Play Store or APK install, Xtream Codes or M3U, channel sync, and streaming tips.",
+      intro:
+        "Android TV boxes are flexible for IPTV — install from Google Play or a trusted APK, then complete your Xtream Codes or M3U login. This guide keeps the process clear for generic Android TV / TV box hardware.",
+      h1DeviceName: "Android Box / TV Box",
+      requirements: [
+        "Android TV or Android-based TV box with network access",
+        "Google Play (preferred) or permission to install unknown apps for APK sideloading",
+        "ScopMedia Xtream Codes or M3U details",
+        "Optional: USB keyboard for faster text entry",
+      ],
+      steps: steps([
+        [
+          "Prefer Google Play: search for IPTV Smarters or your ScopMedia-recommended player and install.",
+          "If sideloading: enable Install unknown apps for your browser or file manager, then download the APK from a trusted link.",
         ],
-      },
-      {
-        title: "Step 2: Install the IPTV app",
-        bullets: [
-          "From Play Store, search IPTV Smarters or your recommended player and install.",
-          "Or download the APK from a trusted link, open it with a file manager, and install.",
+        [
+          "Open the IPTV app from the app drawer.",
+          "Grant storage/network permissions if asked so playlists can cache correctly.",
         ],
-      },
-      {
-        title: "Step 3: Login method",
-        bullets: [
-          "Launch the app and pick Xtream Codes or M3U playlist to match your ScopMedia credentials.",
+        [
+          "Pick Xtream Codes or M3U playlist to match your ScopMedia subscription.",
+          "Enter host, username, and password — or paste the full M3U URL.",
         ],
-      },
-      {
-        title: "Step 4: Enter details",
-        bullets: [
-          "Input username, password, and host URL (or paste the M3U link).",
-          "Confirm time zone and EPG options if prompted.",
+        [
+          "Wait for the channel list to populate; large playlists can take several minutes on first load.",
         ],
-      },
-      {
-        title: "Step 5: Sync & watch",
-        bullets: [
-          "Wait for the channel list to populate; large playlists may take several minutes.",
-          "Use Ethernet if possible for the most stable **IPTV** streaming on Android boxes.",
+        [
+          "Select a channel and stream; adjust buffer or hardware decoding in settings if needed.",
+          "Use Ethernet on the box when possible for the most stable IPTV experience.",
         ],
-      },
-    ],
-    screenshotHints: ["Unknown sources toggle", "App list after install"],
+      ]),
+      troubleshooting: [
+        "Parse errors: confirm the M3U URL is complete and has not expired.",
+        "Install blocked: re-check Install unknown apps for the correct app (browser vs file manager).",
+        "Overheating: ensure ventilation; thermal throttling can cause stutter.",
+      ],
+      tips: [
+        "Close background apps to free RAM on low-end boxes.",
+        "Match the app’s time zone to your EPG for accurate programme guides.",
+      ],
+    },
   },
   {
     id: "windows",
+    slug: "windows-pc",
     title: "Windows PC",
     summary:
-      "IPTV on Windows: use VLC, dedicated IPTV apps, or players that support M3U and Xtream logins for desktop streaming.",
-    guideIntro:
-      "Windows is great for testing playlists and watching in a browser or desktop player. This IPTV setup guide covers VLC and generic IPTV apps.",
-    guideHeading: "How to Set Up IPTV on Windows PC",
-    steps: [
-      {
-        title: "Step 1: Install a player",
-        bullets: [
-          "Install VLC Media Player (videolan.org) for M3U playlists, or download a Windows IPTV app that supports Xtream Codes if you have API credentials.",
-          "Some users prefer dedicated IPTV Windows apps from the Microsoft Store.",
+      "Stream IPTV on Windows with VLC or a dedicated IPTV app — M3U or Xtream Codes supported.",
+    page: {
+      metaTitle: "IPTV on Windows PC — Setup Guide | ScopMedia",
+      metaDescription:
+        "How to install IPTV on Windows: VLC or IPTV software, M3U and Xtream Codes, loading channels, and desktop streaming tips.",
+      intro:
+        "Use this IPTV setup guide for Windows desktops and laptops: VLC for M3U playlists or a dedicated IPTV app for Xtream Codes, plus practical tips for smooth playback.",
+      h1DeviceName: "Windows PC",
+      requirements: [
+        "Windows 10 or 11 (64-bit recommended)",
+        "VLC Media Player and/or an IPTV app that supports your credential type",
+        "ScopMedia M3U URL or Xtream Codes (username, password, server URL)",
+        "Stable broadband connection",
+      ],
+      steps: steps([
+        [
+          "Install VLC (videolan.org) for M3U use, and/or install a Windows IPTV app from the vendor or Microsoft Store that supports Xtream Codes.",
         ],
-      },
-      {
-        title: "Step 2: Open your playlist or app",
-        bullets: [
-          "VLC: Media → Open Network Stream → paste your M3U URL, or open the .m3u file.",
-          "Xtream-style apps: open the app and choose API / Xtream login.",
+        [
+          "Open VLC (Media → Open Network Stream) for M3U URLs, or launch your IPTV app for API login.",
         ],
-      },
-      {
-        title: "Step 3: Choose login type",
-        bullets: [
-          "Select M3U URL or Xtream Codes depending on what ScopMedia provided.",
+        [
+          "For Xtream: enter username, password, and server URL in the app’s fields.",
+          "For M3U in VLC: paste the full playlist URL — it may embed credentials in one line.",
         ],
-      },
-      {
-        title: "Step 4: Enter login details",
-        bullets: [
-          "Enter username, password, and server URL in the app’s fields.",
-          "For VLC with M3U only, the single URL may embed credentials — paste exactly as given.",
+        [
+          "Allow the player to parse the playlist and load channels and groups.",
         ],
-      },
-      {
-        title: "Step 5: Load and stream",
-        bullets: [
-          "Wait for channels to parse; VLC may show a flat list — use group titles if your playlist includes them.",
-          "Adjust hardware decoding in settings if you notice stutter during HD or 4K playback.",
+        [
+          "Select a channel and stream; enable hardware decoding in VLC or the app if CPU usage is high.",
+          "Adjust video output settings if you see tearing on high refresh monitors.",
         ],
-      },
-    ],
-    screenshotHints: ["VLC open network", "Xtream fields in desktop app"],
+      ]),
+      troubleshooting: [
+        "No audio/video: install current GPU drivers and try a different output module in VLC.",
+        "Xtream login fails: rule out VPN mismatches and verify server URL format (http/https).",
+        "Stutter on 4K: lower resolution or enable hardware acceleration.",
+      ],
+      tips: [
+        "For testing, bookmark working M3U links in a text file — never share publicly.",
+        "Close heavy browser tabs while streaming 4K IPTV.",
+      ],
+    },
   },
   {
     id: "formuler",
+    slug: "formuler",
     title: "Formuler Device",
     summary:
-      "Formuler IPTV setup: use MYTVOnline (or MYTVOnline 2) with your portal or Xtream details for a polished STB experience.",
-    guideIntro:
-      "Formuler boxes are popular for IPTV thanks to MYTVOnline. This guide explains how to install IPTV-style portals and start streaming quickly.",
-    guideHeading: "How to Set Up IPTV on a Formuler Device",
-    steps: [
-      {
-        title: "Step 1: Open MYTVOnline",
-        bullets: [
-          "From the home screen, launch MYTVOnline or MYTVOnline 2 (depending on your model and firmware).",
+      "Use MYTVOnline or MYTVOnline 2 on Formuler with portal or Xtream details for pro IPTV playback.",
+    page: {
+      metaTitle: "IPTV on Formuler (MYTVOnline) — Setup Guide | ScopMedia",
+      metaDescription:
+        "Formuler IPTV setup with MYTVOnline: portal or Xtream Codes, credentials, loading channels, and streaming on Formuler receivers.",
+      intro:
+        "Formuler receivers pair with MYTVOnline for polished IPTV. This page explains portal and Xtream-style setup so you can complete your IPTV setup guide path on Formuler hardware.",
+      h1DeviceName: "Formuler Device",
+      requirements: [
+        "Formuler set-top box with MYTVOnline or MYTVOnline 2",
+        "Network connection (Ethernet recommended)",
+        "Portal URL and/or MAC details, or Xtream Codes from ScopMedia",
+        "Remote control for portal and credential entry",
+      ],
+      steps: steps([
+        [
+          "Ensure MYTVOnline (or MYTVOnline 2) is available on your firmware; update the box if the app is outdated.",
+          "No separate “install” is needed if the app is preloaded — otherwise follow Formuler’s official update path.",
         ],
-      },
-      {
-        title: "Step 2: Add portal or Xtream",
-        bullets: [
-          "Choose Add Portal and enter the portal URL if your provider uses a MAC-based portal.",
-          "Or select Xtream Codes / API and prepare your username, password, and server URL.",
+        [
+          "From the home screen, open MYTVOnline.",
         ],
-      },
-      {
-        title: "Step 3: Confirm login method",
-        bullets: [
-          "Match the login type to what ScopMedia issued — portal DNS, Xtream API, or Stalker — so the device can authenticate.",
+        [
+          "Choose Add Portal with your portal URL if your provider uses MAC-based portals, or select Xtream Codes / API.",
+          "Enter username, password, and server URL exactly as ScopMedia provided.",
         ],
-      },
-      {
-        title: "Step 4: Enter credentials",
-        bullets: [
-          "Fill in all required fields; double-check for typos in the server address.",
-          "Save and allow the receiver to fetch bouquets and VOD.",
+        [
+          "Save and let the receiver fetch bouquets, channels, and VOD categories.",
         ],
-      },
-      {
-        title: "Step 5: Stream",
-        bullets: [
-          "Open Live TV, VOD, or Series from the MYTVOnline interface.",
-          "Use Ethernet for best results; update Formuler firmware when prompted for security and codec support.",
+        [
+          "Open Live TV or VOD from the MYTVOnline UI and start streaming.",
+          "Prefer Ethernet and keep firmware updated for best stability.",
         ],
-      },
-    ],
-    screenshotHints: ["MYTVOnline portal screen", "Xtream login on Formuler"],
+      ]),
+      troubleshooting: [
+        "Portal won’t connect: verify DNS/portal URL and that your MAC is registered if required.",
+        "Authentication error: double-check Xtream fields and caps lock on the remote entry screen.",
+        "EPG missing: enable EPG URL in the app if your subscription includes it.",
+      ],
+      tips: [
+        "Use wired LAN for 4K and high-bitrate channels.",
+        "Back up portal settings before factory reset.",
+      ],
+    },
   },
 ];
+
+const guideBySlug = new Map<SetupGuideSlug, SetupGuideDevice>(
+  SETUP_GUIDES.map((g) => [g.slug, g])
+);
+
+export function getGuideBySlug(slug: string): SetupGuideDevice | undefined {
+  return guideBySlug.get(slug as SetupGuideSlug);
+}
+
+export function getAllGuideSlugs(): SetupGuideSlug[] {
+  return [...SETUP_GUIDE_SLUGS];
+}

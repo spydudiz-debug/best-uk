@@ -33,7 +33,7 @@ export default function DeviceSupport() {
           </p>
         </motion.div>
 
-        <SetupGuideCardsGrid titleLevel="h3" guideHeadingLevel="h4" />
+        <SetupGuideCardsGrid titleLevel="h3" />
       </div>
     </section>
   );
