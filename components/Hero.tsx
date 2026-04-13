@@ -100,19 +100,20 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.96, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto w-full max-w-lg lg:max-w-none"
+          className="relative w-full max-w-[520px] mx-auto lg:mx-0 lg:ml-auto"
         >
-          <div className="animate-float relative aspect-[4/3] overflow-hidden rounded-2xl border border-border-subtle bg-white/[0.02] shadow-hero ring-1 ring-white/[0.06]">
-            <div className="pointer-events-none absolute inset-0 rounded-2xl shadow-[inset_0_0_80px_rgba(0,229,255,0.08)]" />
-            <Image
-              src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=1600&auto=format&fit=crop"
-              alt="Modern living room with TV streaming interface"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 480px"
-              priority
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#020617]/60 via-transparent to-transparent" />
+          <div className="relative group w-full max-w-[520px]">
+            <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-[0_0_40px_rgba(0,229,255,0.15)] transition-transform duration-500 group-hover:scale-105">
+              <Image
+                src="/hero-new.png"
+                alt="ScopMedia IPTV Streaming"
+                width={520}
+                height={320}
+                className="h-auto w-full max-w-full object-cover"
+                priority
+                sizes="(max-width: 1024px) 100vw, 520px"
+              />
+            </div>
           </div>
           <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-accent-cyan/20 via-transparent to-accent-magenta/15 blur-2xl" />
         </motion.div>
