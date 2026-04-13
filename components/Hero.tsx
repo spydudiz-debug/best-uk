@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { SITE_URLS, externalTabProps } from "@/lib/site-urls";
 
 const stats = [
   { value: "20,000+", label: "Channels" },
@@ -78,7 +79,8 @@ export default function Hero() {
             className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
           >
             <motion.a
-              href="#pricing"
+              href={SITE_URLS.freeTrial}
+              {...externalTabProps}
               whileHover={{ scale: 1.02, boxShadow: "0 0 48px rgba(0,229,255,0.35)" }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex h-12 min-h-[48px] items-center justify-center rounded-full bg-gradient-cta px-8 text-sm font-semibold text-[#020617] shadow-glow ring-1 ring-white/10 sm:px-10"
@@ -86,7 +88,8 @@ export default function Hero() {
               Start Free Trial
             </motion.a>
             <motion.a
-              href="#pricing"
+              href={SITE_URLS.iptvSubscriptions}
+              {...externalTabProps}
               whileHover={{ scale: 1.02, borderColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex h-12 min-h-[48px] items-center justify-center rounded-full border border-border-subtle bg-white/[0.03] px-8 text-sm font-semibold text-white backdrop-blur-sm sm:px-10"

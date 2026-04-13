@@ -4,6 +4,7 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import ScopMediaLogo from "@/components/ScopMediaLogo";
+import { SITE_URLS, externalTabProps } from "@/lib/site-urls";
 
 const links = [
   { href: "#home", label: "Home" },
@@ -57,7 +58,8 @@ export default function Navbar() {
 
         <div className="hidden md:block">
           <motion.a
-            href="#pricing"
+            href={SITE_URLS.freeTrial}
+            {...externalTabProps}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center justify-center rounded-full bg-gradient-cta px-5 py-2.5 text-sm font-semibold text-[#020617] shadow-glow ring-1 ring-white/10"
@@ -111,7 +113,8 @@ export default function Navbar() {
             ))}
             <li>
               <a
-                href="#pricing"
+                href={SITE_URLS.freeTrial}
+                {...externalTabProps}
                 className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-gradient-cta py-3 text-center text-sm font-semibold text-[#020617] shadow-glow"
                 onClick={() => setOpen(false)}
               >

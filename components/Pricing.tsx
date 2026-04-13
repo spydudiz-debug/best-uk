@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
+import { SITE_URLS, externalTabProps } from "@/lib/site-urls";
 
 type Tier = "standard" | "premium";
 
@@ -9,9 +10,6 @@ const TIER_LABELS: Record<Tier, string> = {
   standard: "IPTV Subscription",
   premium: "IPTV Reseller",
 };
-
-const ORDER_MAILTO =
-  "mailto:support@scopmedia.com?subject=ScopMedia%20order";
 
 const basePlans = [
   {
@@ -105,19 +103,16 @@ function formatMoney(n: number) {
   return n.toFixed(2);
 }
 
-function OrderNowLink({
-  subjectSuffix,
-}: {
-  subjectSuffix?: string;
-}) {
+function OrderNowLink({ variant }: { variant: "subscription" | "reseller" }) {
   const href =
-    subjectSuffix != null && subjectSuffix.length > 0
-      ? `mailto:support@scopmedia.com?subject=${encodeURIComponent(`ScopMedia order — ${subjectSuffix}`)}`
-      : ORDER_MAILTO;
+    variant === "subscription"
+      ? SITE_URLS.iptvSubscriptions
+      : SITE_URLS.resellerPackages;
 
   return (
     <motion.a
       href={href}
+      {...externalTabProps}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className="inline-flex h-11 w-full max-w-[240px] items-center justify-center rounded-full bg-gradient-to-r from-accent-cyan to-sky-600 px-6 text-sm font-semibold text-[#020617] shadow-glow-sm ring-1 ring-white/10 sm:max-w-[260px] sm:px-8"
@@ -243,7 +238,7 @@ export default function Pricing() {
                     </ul>
 
                     <div className="mt-8 flex w-full justify-center">
-                      <OrderNowLink subjectSuffix={`${plan.label} subscription`} />
+                      <OrderNowLink variant="subscription" />
                     </div>
                   </motion.article>
                 );
@@ -311,9 +306,7 @@ export default function Pricing() {
                     </ul>
 
                     <div className="mt-8 flex w-full justify-center">
-                      <OrderNowLink
-                        subjectSuffix={`Reseller ${plan.title} (£${formatMoney(plan.price)} GBP)`}
-                      />
+                      <OrderNowLink variant="reseller" />
                     </div>
                   </motion.article>
                 ))}

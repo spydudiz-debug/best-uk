@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ScopMediaLogo from "@/components/ScopMediaLogo";
+import PaymentMethodsBar from "@/components/PaymentMethodsBar";
+import { SITE_URLS, externalTabProps } from "@/lib/site-urls";
 
 const subscriptions = [
-  { label: "1 Month Plan", href: "#pricing" },
-  { label: "3 Month Plan", href: "#pricing" },
-  { label: "6 Month Plan", href: "#pricing" },
-  { label: "12 Month Plan", href: "#pricing" },
+  { label: "1 Month Plan", href: SITE_URLS.iptvSubscriptions },
+  { label: "3 Month Plan", href: SITE_URLS.iptvSubscriptions },
+  { label: "6 Month Plan", href: SITE_URLS.iptvSubscriptions },
+  { label: "12 Month Plan", href: SITE_URLS.iptvSubscriptions },
 ];
 
 const quick = [
@@ -47,9 +49,13 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-body">
               {subscriptions.map((s) => (
                 <li key={s.label}>
-                  <Link href={s.href} className="transition hover:text-accent-cyan">
+                  <a
+                    href={s.href}
+                    {...externalTabProps}
+                    className="transition hover:text-accent-cyan"
+                  >
                     {s.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -89,7 +95,8 @@ export default function Footer() {
               ))}
             </ul>
             <motion.a
-              href="#pricing"
+              href={SITE_URLS.freeTrial}
+              {...externalTabProps}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-gradient-cta py-3 text-sm font-semibold text-[#020617] shadow-glow sm:w-auto sm:px-6"
@@ -99,16 +106,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center justify-center gap-6 border-t border-white/[0.06] pt-10 opacity-80">
-          {["Visa", "Mastercard", "PayPal", "Amex", "Apple Pay"].map((brand) => (
-            <div
-              key={brand}
-              className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-body-muted"
-            >
-              {brand}
-            </div>
-          ))}
-        </div>
+        <PaymentMethodsBar />
 
         <div className="mt-8 flex flex-col items-center justify-between gap-4 text-xs text-body-muted sm:flex-row">
           <p>© {new Date().getFullYear()} ScopMedia. All rights reserved.</p>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { SITE_URLS, externalTabProps } from "@/lib/site-urls";
 
 const devices = [
   {
@@ -158,7 +159,8 @@ export default function DeviceSupport() {
               <h3 className="mt-5 text-lg font-semibold text-white">{c.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-body">{c.desc}</p>
               <a
-                href="#pricing"
+                href={SITE_URLS.iptvSubscriptions}
+                {...externalTabProps}
                 className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent-cyan transition group-hover:gap-2"
               >
                 Learn more
