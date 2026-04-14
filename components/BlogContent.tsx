@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function BlogContent() {
   return (
@@ -20,6 +21,16 @@ export default function BlogContent() {
             just about channel count — it is about stream stability, transparent
             pricing, device compatibility, and support you can reach when it matters.
             ScopMedia is built around those pillars.
+          </p>
+          <p className="mt-5 text-base leading-relaxed text-body sm:text-lg">
+            Shopping for hardware too? Read our{" "}
+            <Link
+              href="/blog/best-iptv-boxes-2026"
+              className="font-medium text-accent-cyan underline-offset-4 transition hover:text-white hover:underline"
+            >
+              complete guide to the best IPTV boxes in 2026
+            </Link>{" "}
+            — streaming devices, comparisons, and what to buy before you subscribe.
           </p>
 
           <h3 className="mt-10 text-xl font-semibold text-white">
