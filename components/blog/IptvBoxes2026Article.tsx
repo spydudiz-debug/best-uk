@@ -1,11 +1,9 @@
 import Image from "next/image";
-import {
-  IPTV_BOXES_FAQ,
-  IPTV_BOXES_HERO_IMAGE,
-  IPTV_BOX_REVIEWS,
-} from "@/data/blog-iptv-boxes-2026";
-import { SITE_URLS, externalTabProps } from "@/lib/site-urls";
+import { IPTV_BOXES_FAQ, IPTV_BOX_REVIEWS } from "@/data/blog-iptv-boxes-2026";
+import BlogContentImage from "@/components/blog/BlogContentImage";
 import BlogSubscriptionCta from "@/components/blog/BlogSubscriptionCta";
+import { IPTV_BLOG_HERO, getSectionImageById } from "@/lib/iptv-blog-images";
+import { SITE_URLS, externalTabProps } from "@/lib/site-urls";
 
 function ProsCons({
   pros,
@@ -57,8 +55,8 @@ export default function IptvBoxes2026Article() {
       <header className="mb-12">
         <div className="relative aspect-[16/9] min-h-[200px] w-full overflow-hidden rounded-2xl border border-white/[0.06] bg-slate-900/50 shadow-hero">
           <Image
-            src={IPTV_BOXES_HERO_IMAGE.src}
-            alt={IPTV_BOXES_HERO_IMAGE.alt}
+            src={IPTV_BLOG_HERO.src}
+            alt={IPTV_BLOG_HERO.alt}
             fill
             priority
             sizes="(max-width: 896px) 100vw, 896px"
@@ -173,6 +171,10 @@ export default function IptvBoxes2026Article() {
             route audio externally.
           </li>
         </ul>
+        <BlogContentImage
+          {...getSectionImageById("what-is")}
+          className="mt-6 mb-10"
+        />
       </section>
 
       <section className="mt-16" aria-labelledby="top-boxes-heading">
@@ -187,6 +189,11 @@ export default function IptvBoxes2026Article() {
           to the form factor that fits. Images sit after every review block to mirror a
           long-form editorial layout and keep the page scannable on mobile.
         </p>
+
+        <BlogContentImage
+          {...getSectionImageById("top-boxes-intro")}
+          className="mt-6 mb-12"
+        />
 
         {IPTV_BOX_REVIEWS.map((box, index) => (
           <div key={box.slug}>
@@ -214,16 +221,10 @@ export default function IptvBoxes2026Article() {
                 <strong className="font-semibold text-white">Best for:</strong> {box.bestFor}
               </p>
 
-              <div className="relative mt-8 aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/[0.06] bg-slate-900/40">
-                <Image
-                  src={box.image.src}
-                  alt={box.image.alt}
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 896px) 100vw, 896px"
-                  className="object-cover"
-                />
-              </div>
+              <BlogContentImage
+                {...box.image}
+                className="mt-8 mb-10"
+              />
             </section>
 
             {(index + 1) % 2 === 0 && index < IPTV_BOX_REVIEWS.length - 1 ? (
@@ -254,6 +255,10 @@ export default function IptvBoxes2026Article() {
           codecs your provider uses and verify return policies when buying grey-market
           imports.
         </p>
+        <BlogContentImage
+          {...getSectionImageById("cheap")}
+          className="mt-6 mb-10"
+        />
       </section>
 
       <section className="mt-14" aria-labelledby="premium-heading">
@@ -275,6 +280,10 @@ export default function IptvBoxes2026Article() {
           subscription tier that actually delivers high-bitrate streams; otherwise you are
           optimising a chain that stops at the source.
         </p>
+        <BlogContentImage
+          {...getSectionImageById("premium")}
+          className="mt-6 mb-10"
+        />
       </section>
 
       <section className="mt-14" aria-labelledby="vs-smarttv-heading">
@@ -298,6 +307,10 @@ export default function IptvBoxes2026Article() {
           might defer a box; otherwise an Android TV IPTV box or STB-class device usually
           wins on flexibility.
         </p>
+        <BlogContentImage
+          {...getSectionImageById("vs-smart-tv")}
+          className="mt-6 mb-10"
+        />
       </section>
 
       <section className="mt-14" aria-labelledby="choose-heading">
@@ -328,6 +341,10 @@ export default function IptvBoxes2026Article() {
             content and display both participate end-to-end.
           </li>
         </ul>
+        <BlogContentImage
+          {...getSectionImageById("how-to-choose")}
+          className="mt-8 mb-10"
+        />
       </section>
 
       <section className="mt-16" aria-labelledby="faq-heading">
@@ -337,6 +354,10 @@ export default function IptvBoxes2026Article() {
         >
           Frequently asked questions
         </h2>
+        <BlogContentImage
+          {...getSectionImageById("faq")}
+          className="mt-6 mb-8"
+        />
         <dl className="mt-8 space-y-8">
           {IPTV_BOXES_FAQ.map((item) => (
             <div key={item.q}>

@@ -1,9 +1,8 @@
-/** Image URLs: Unsplash (optimized via next/image sizes). */
+import { getDeviceImageForSlug } from "@/lib/iptv-blog-images";
+import type { BlogImageAsset } from "@/lib/iptv-blog-images";
 
-export const IPTV_BOXES_HERO_IMAGE = {
-  src: "https://images.unsplash.com/photo-1593784991095-a2050694700e?auto=format&fit=crop&w=1600&q=80",
-  alt: "Living room with large TV streaming at night — IPTV viewing setup",
-};
+/** @deprecated Use `IPTV_BLOG_HERO` from `@/lib/iptv-blog-images`; kept for backward imports. */
+export { IPTV_BLOG_HERO as IPTV_BOXES_HERO_IMAGE } from "@/lib/iptv-blog-images";
 
 export type IptvBoxReview = {
   slug: string;
@@ -13,10 +12,10 @@ export type IptvBoxReview = {
   pros: string[];
   cons: string[];
   bestFor: string;
-  image: { src: string; alt: string };
+  image: BlogImageAsset;
 };
 
-export const IPTV_BOX_REVIEWS: IptvBoxReview[] = [
+const IPTV_BOX_REVIEW_DATA: Omit<IptvBoxReview, "image">[] = [
   {
     slug: "fire-tv-stick-4k",
     name: "Amazon Fire TV Stick 4K",
@@ -37,11 +36,8 @@ export const IPTV_BOX_REVIEWS: IptvBoxReview[] = [
       "Amazon-first interface may feel busy if you prefer stock Android TV",
       "Heavy skins can push storage limits on base models",
     ],
-    bestFor: "Viewers who want an affordable, plug-and-play IPTV streaming device with minimal setup friction.",
-    image: {
-      src: "https://images.unsplash.com/photo-1616469829581-739039680349?auto=format&fit=crop&w=1200&q=80",
-      alt: "Streaming media player remote and compact TV device on a table",
-    },
+    bestFor:
+      "Viewers who want an affordable, plug-and-play IPTV streaming device with minimal setup friction.",
   },
   {
     slug: "nvidia-shield-tv-pro",
@@ -63,11 +59,8 @@ export const IPTV_BOX_REVIEWS: IptvBoxReview[] = [
       "Premium price versus sticks and compact boxes",
       "Larger footprint than a typical dongle",
     ],
-    bestFor: "Power users who want the fastest Android TV IPTV box experience and plan to keep the hardware for years.",
-    image: {
-      src: "https://images.unsplash.com/photo-1593359677879-bc4516c8e8f7?auto=format&fit=crop&w=1200&q=80",
-      alt: "Modern smart TV with vivid picture in a contemporary living room",
-    },
+    bestFor:
+      "Power users who want the fastest Android TV IPTV box experience and plan to keep the hardware for years.",
   },
   {
     slug: "formuler-z11-pro-max",
@@ -89,11 +82,8 @@ export const IPTV_BOX_REVIEWS: IptvBoxReview[] = [
       "Less “general Android” flexibility than open Android TV boxes",
       "Premium tier pricing compared with mass-market sticks",
     ],
-    bestFor: "Households that prioritise STB-style IPTV with a remote-first workflow and stable live playback.",
-    image: {
-      src: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1200&q=80",
-      alt: "Set-top box style device with remote near a television",
-    },
+    bestFor:
+      "Households that prioritise STB-style IPTV with a remote-first workflow and stable live playback.",
   },
   {
     slug: "buzztv-x5",
@@ -115,11 +105,8 @@ export const IPTV_BOX_REVIEWS: IptvBoxReview[] = [
       "Brand awareness varies by region—check local warranty paths",
       "Software polish depends on image updates—verify before purchase",
     ],
-    bestFor: "Users who want Android TV IPTV box flexibility without jumping straight to the highest price tier.",
-    image: {
-      src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
-      alt: "Person using remote control while watching streaming content on TV",
-    },
+    bestFor:
+      "Users who want Android TV IPTV box flexibility without jumping straight to the highest price tier.",
   },
   {
     slug: "mag-box",
@@ -141,11 +128,8 @@ export const IPTV_BOX_REVIEWS: IptvBoxReview[] = [
       "Less flexible for sideloading niche Android apps",
       "UI can feel dated next to modern Android TV skins",
     ],
-    bestFor: "Installations where portal-style IPTV must “just work” with minimal app-store exploration.",
-    image: {
-      src: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80",
-      alt: "Flat-screen television on a media console in a living room",
-    },
+    bestFor:
+      "Installations where portal-style IPTV must “just work” with minimal app-store exploration.",
   },
   {
     slug: "xiaomi-mi-box-s",
@@ -167,13 +151,15 @@ export const IPTV_BOX_REVIEWS: IptvBoxReview[] = [
       "Not the fastest silicon—heavy skins may need tuning",
       "Storage can fill quickly if you install many apps",
     ],
-    bestFor: "Budget-minded shoppers who still want legitimate Android TV IPTV box credentials and Play Store apps.",
-    image: {
-      src: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1200&q=80",
-      alt: "Gaming and entertainment controllers near a screen",
-    },
+    bestFor:
+      "Budget-minded shoppers who still want legitimate Android TV IPTV box credentials and Play Store apps.",
   },
 ];
+
+export const IPTV_BOX_REVIEWS: IptvBoxReview[] = IPTV_BOX_REVIEW_DATA.map((row) => ({
+  ...row,
+  image: getDeviceImageForSlug(row.slug),
+}));
 
 export const IPTV_BOXES_FAQ: { q: string; a: string }[] = [
   {
