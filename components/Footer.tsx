@@ -18,7 +18,7 @@ const quick = [
   { label: "Pricing", href: "/#pricing" },
   { label: "Platform", href: "/#platform" },
   { label: "Setup Guide", href: "/setup-guide" },
-  { label: "Blog", href: "/#blog" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const support = [

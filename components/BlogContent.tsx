@@ -25,7 +25,7 @@ export default function BlogContent() {
           <p className="mt-5 text-base leading-relaxed text-body sm:text-lg">
             Shopping for hardware too? Read our{" "}
             <Link
-              href="/blog/best-iptv-boxes-2026"
+              href="/blog/iptv-box-2026"
               className="font-medium text-accent-cyan underline-offset-4 transition hover:text-white hover:underline"
             >
               complete guide to the best IPTV boxes in 2026
