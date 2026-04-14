@@ -1,100 +1,128 @@
 /**
- * Curated Unsplash images for the IPTV boxes 2026 article.
- * URLs use auto=format, fit=crop, w, q for CDN optimization (pairs with next/image).
- * Each asset is chosen to match the device or section topic—not unrelated stock.
+ * IPTV “Best IPTV Boxes 2026” article — real product / hardware photography only.
+ *
+ * Sources: Wikimedia Commons (CC BY-SA / CC BY / CC0 / GFDL as per each file).
+ * Device sections use the closest available Commons photo for that product; where
+ * no exact model exists, alt text states the article heading and names the actual
+ * hardware shown (or “same class as …”) — never unrelated abstract stock.
+ *
+ * Optional local filenames (for CMS / exports): see `localFilename` on each asset.
  */
-
-const Q = "75";
-const W_HERO = "1600";
-const W_SECTION = "1200";
-
-function u(photoId: string, w: string): string {
-  return `https://images.unsplash.com/${photoId}?auto=format&fit=crop&w=${w}&q=${Q}`;
-}
-
-/** Short title fragment for consistent alt text (SEO). */
-export const IPTV_BLOG_ALT_PREFIX = "Best IPTV Boxes 2026";
 
 export type BlogImageAsset = {
   src: string;
   alt: string;
 };
 
-/** Fallback: living-room IPTV / smart TV context (same family as hero). */
-export const IPTV_BLOG_IMAGE_FALLBACK: BlogImageAsset = {
-  src: u("photo-1593784991095-a2050694700e", W_SECTION),
-  alt: `${IPTV_BLOG_ALT_PREFIX} — IPTV streaming setup with smart TV in a modern living room`,
-};
+export type TaggedImage = BlogImageAsset & { localFilename: string };
 
-export const IPTV_BLOG_HERO: BlogImageAsset = {
-  src: u("photo-1593784991095-a2050694700e", W_HERO),
-  alt: `${IPTV_BLOG_ALT_PREFIX} complete streaming guide — 4K smart TV and home theater hardware`,
-};
+function pickAsset(t: TaggedImage): BlogImageAsset {
+  return { src: t.src, alt: t.alt };
+}
 
-/** Featured image for /blog index card. */
-export const IPTV_BLOG_CARD_IMAGE = IPTV_BLOG_HERO;
+/** Base path on upload.wikimedia.org */
+function wm(path: string): string {
+  return `https://upload.wikimedia.org/wikipedia/commons${path}`;
+}
+
+/** Short title fragment for SEO alt text */
+export const IPTV_BLOG_ALT_PREFIX = "Best IPTV Boxes 2026";
+
+function img(asset: TaggedImage): TaggedImage {
+  return asset;
+}
+
+/** When no slug matches (should not happen if data stays in sync). */
+export const IPTV_BLOG_IMAGE_FALLBACK: TaggedImage = img({
+  src: wm("/2/21/Remote_controll_%26_Amazon_Stick_4K_Max_%26_HDMI_Extension_cable.jpg"),
+  alt: "Amazon Fire TV Stick 4K Max with Alexa Voice Remote and HDMI extension — IPTV streaming hardware",
+  localFilename: "fire-tv-stick-4k-max-remote-hdmi-wikimedia.jpg",
+});
+
+/** Hero + /blog card: multi-piece real setup (stick, remote, HDMI) — matches guide theme. */
+export const IPTV_BLOG_HERO: TaggedImage = img({
+  src: wm("/2/21/Remote_controll_%26_Amazon_Stick_4K_Max_%26_HDMI_Extension_cable.jpg"),
+  alt: `${IPTV_BLOG_ALT_PREFIX} — Amazon Fire TV Stick 4K Max, Alexa Voice Remote, and HDMI cable (real IPTV streaming hardware)`,
+  localFilename: "hero-iptv-boxes-2026-firestick-remote-hdmi.jpg",
+});
+
+export const IPTV_BLOG_CARD_IMAGE: BlogImageAsset = pickAsset(IPTV_BLOG_HERO);
 
 /**
- * Device review images — keyed by `IptvBoxReview.slug`.
- * Alts include device name + “IPTV streaming device” context for SEO.
+ * Device review images — real product photos keyed by `IptvBoxReview.slug`.
+ * Note: Nvidia uses Shield TV 2017 console (Pro shares the same product line on Commons).
+ * Formuler / BuzzTV: Commons has no official packshots; we use the closest real IPTV STB photos and state that in alt text.
  */
-export const IPTV_BOX_DEVICE_IMAGES: Record<string, BlogImageAsset> = {
-  "fire-tv-stick-4k": {
-    src: u("photo-1577587310899-1588baa4e8f4", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — Amazon Fire TV Stick 4K IPTV streaming device with remote aimed at television screen`,
-  },
-  "nvidia-shield-tv-pro": {
-    src: u("photo-1542751371-adc38448a05e", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — Nvidia Shield TV Pro IPTV Android TV box style 4K gaming and streaming setup`,
-  },
-  "formuler-z11-pro-max": {
-    src: u("photo-1574375927938-d5a98e8ffe85", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — Formuler Z11 Pro Max IPTV set-top box with remote beside television`,
-  },
-  "buzztv-x5": {
-    src: u("photo-1616469829581-739039680349", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — BuzzTV X5 Android TV IPTV box style streaming hardware and remote on desk`,
-  },
-  "mag-box": {
-    src: u("photo-1593305841991-05c297ba4575", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — MAG IPTV box style compact streamer with entertainment controllers near display`,
-  },
-  "xiaomi-mi-box-s": {
-    src: u("photo-1509281373149-efbc7b3fef10", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — Xiaomi Mi Box S style Android TV IPTV streaming puck with home cinema screen`,
-  },
+export const IPTV_BOX_DEVICE_IMAGES: Record<string, TaggedImage> = {
+  "fire-tv-stick-4k": img({
+    src: wm("/b/b3/Amazon_Fire_TV_4k.jpg"),
+    alt: "Amazon Fire TV 4K streaming player — Fire TV Stick 4K class IPTV device (product photo)",
+    localFilename: "firestick-iptv-2026-amazon-fire-tv-4k-wikimedia.jpg",
+  }),
+  "nvidia-shield-tv-pro": img({
+    src: wm("/e/e2/NVIDIA_SHIELD_TV_main_console.jpg"),
+    alt: "Nvidia Shield TV console — Shield TV Pro class Android TV IPTV 4K HDR streaming box (product photo)",
+    localFilename: "nvidia-shield-tv-pro-console-wikimedia.jpg",
+  }),
+  "formuler-z11-pro-max": img({
+    src: wm("/3/39/Topway_4K_IP_set-top-boxBy_Skyworth_digital_E900V21C.jpg"),
+    alt: "4K IP IPTV set-top box with on-screen UI — same STB class as Formuler Z11 Pro Max MYTVOnline hardware (Wikimedia product photo, Topway / Skyworth)",
+    localFilename: "formuler-class-4k-iptv-stb-skyworth-wikimedia.jpg",
+  }),
+  "buzztv-x5": img({
+    src: wm("/d/d6/Mview_IPTV.jpg"),
+    alt: "Mview IPTV Android set-top box — retail IPTV streamer same category as BuzzTV X5 Android TV box (Wikimedia product photo)",
+    localFilename: "buzztv-class-mview-iptv-box-wikimedia.jpg",
+  }),
+  "mag-box": img({
+    src: wm("/f/fc/Motorola_IPTV.jpg"),
+    alt: "Motorola IP IPTV set-top box — MAG-style operator IPTV receiver with front panel (Wikimedia product photo)",
+    localFilename: "mag-class-motorola-iptv-stb-wikimedia.jpg",
+  }),
+  "xiaomi-mi-box-s": img({
+    src: wm("/d/d1/Xiaomi_Mi_Box_S.jpg"),
+    alt: "Xiaomi Mi Box S Android TV streamer with voice remote — IPTV-capable Android TV box (Wikimedia product photo)",
+    localFilename: "xiaomi-mi-box-s-remote-wikimedia.jpg",
+  }),
 };
 
-/** Section blocks (H2) — stable ids used in the article layout. */
-export const IPTV_BLOG_SECTION_IMAGES: Record<string, BlogImageAsset> = {
-  "what-is": {
-    src: u("photo-1544197150-b99a580bb7a8", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — What is an IPTV box: HDMI and home network cables for internet television streaming`,
-  },
-  "top-boxes-intro": {
-    src: u("photo-1522869635100-9f4c5e86aa37", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — Top IPTV boxes 2026 overview: live sports and streaming on a big-screen television`,
-  },
-  cheap: {
-    src: u("photo-1554224155-6726b3ff858f", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — Cheap budget IPTV boxes and affordable streaming device options`,
-  },
-  premium: {
-    src: u("photo-1593359677879-bc4516c8e8f7", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — Premium high-end IPTV boxes and flagship 4K HDR television playback`,
-  },
-  "vs-smart-tv": {
-    src: u("photo-1485846234645-a62644f84728", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — IPTV box versus smart TV: external streaming device compared to built-in TV apps`,
-  },
-  "how-to-choose": {
-    src: u("photo-1460925895917-afdab827c52f", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — How to choose an IPTV box: research CPU, RAM, and storage for streaming hardware`,
-  },
-  faq: {
-    src: u("photo-1556742049-0cfed4f6a45d", W_SECTION),
-    alt: `${IPTV_BLOG_ALT_PREFIX} — IPTV FAQ: remote control and television for legal streaming and subscription questions`,
-  },
+/** Section (H2) illustrations — all real hardware / connectivity, no abstract stock. */
+export const IPTV_BLOG_SECTION_IMAGES: Record<string, TaggedImage> = {
+  "what-is": img({
+    src: wm("/1/17/Amazon_Fire_TV_Stick_HDMI.jpg"),
+    alt: "Amazon Fire TV Stick with HDMI connector — what is an IPTV box: HDMI streaming stick hardware",
+    localFilename: "what-is-iptv-fire-tv-stick-hdmi-wikimedia.jpg",
+  }),
+  "top-boxes-intro": img({
+    src: wm("/5/5f/Fire-TV_Stick_and_Remote.jpg"),
+    alt: "Amazon Fire TV Stick with Alexa Voice Remote — top IPTV boxes 2026 streaming hardware line-up",
+    localFilename: "top-iptv-boxes-fire-tv-stick-remote-wikimedia.jpg",
+  }),
+  cheap: img({
+    src: wm("/1/14/XIAOMI_HD_Internet_TV_Box.jpg"),
+    alt: "Xiaomi HD Internet TV Box — budget Android IPTV streamer class hardware (Wikimedia product photo)",
+    localFilename: "cheap-iptv-xiaomi-hd-box-wikimedia.jpg",
+  }),
+  premium: img({
+    src: wm("/6/68/NVIDIA_SHIELD_TV_2017ver_console.jpg"),
+    alt: "Nvidia Shield TV (2017) console — premium 4K IPTV Android TV flagship hardware (Wikimedia product photo)",
+    localFilename: "premium-nvidia-shield-tv-console-wikimedia.jpg",
+  }),
+  "vs-smart-tv": img({
+    src: wm("/7/7c/Deutsche_Telekom_Media_Receiver_400-5956.jpg"),
+    alt: "Deutsche Telekom Media Receiver 400 IPTV set-top — external IPTV box vs built-in smart TV apps (Wikimedia product photo)",
+    localFilename: "iptv-box-vs-smart-tv-telekom-receiver-wikimedia.jpg",
+  }),
+  "how-to-choose": img({
+    src: wm("/d/d1/Xiaomi_Mi_Box_S.jpg"),
+    alt: "Xiaomi Mi Box S with remote — choosing CPU, storage, and app support on an Android TV IPTV box (Wikimedia product photo)",
+    localFilename: "how-to-choose-xiaomi-mi-box-s-wikimedia.jpg",
+  }),
+  faq: img({
+    src: wm("/2/21/Remote_controll_%26_Amazon_Stick_4K_Max_%26_HDMI_Extension_cable.jpg"),
+    alt: "Amazon Fire TV Stick 4K Max with remote — IPTV subscription, devices, and legal streaming FAQ",
+    localFilename: "faq-iptv-firestick-remote-hdmi-wikimedia.jpg",
+  }),
 };
 
 export function normalizeBlogImageKey(text: string): string {
@@ -104,18 +132,17 @@ export function normalizeBlogImageKey(text: string): string {
     .replace(/^-|-$/g, "");
 }
 
-/** Alt pattern: article + section + keyword context (for dynamic headings). */
 export function buildDynamicSectionAlt(sectionTitle: string, keywordContext: string): string {
   const clean = sectionTitle.replace(/\s+/g, " ").trim();
   return `${IPTV_BLOG_ALT_PREFIX} — ${clean}: ${keywordContext}`;
 }
 
 export function getDeviceImageForSlug(deviceSlug: string): BlogImageAsset {
-  return IPTV_BOX_DEVICE_IMAGES[deviceSlug] ?? IPTV_BLOG_IMAGE_FALLBACK;
+  return pickAsset(IPTV_BOX_DEVICE_IMAGES[deviceSlug] ?? IPTV_BLOG_IMAGE_FALLBACK);
 }
 
 export function getSectionImageById(sectionId: string): BlogImageAsset {
-  return IPTV_BLOG_SECTION_IMAGES[sectionId] ?? IPTV_BLOG_IMAGE_FALLBACK;
+  return pickAsset(IPTV_BLOG_SECTION_IMAGES[sectionId] ?? IPTV_BLOG_IMAGE_FALLBACK);
 }
 
 export function sectionHeadingToId(heading: string): string | undefined {
@@ -134,5 +161,6 @@ export function resolveImageFromHeading(heading: string): BlogImageAsset {
   const id = sectionHeadingToId(heading);
   if (id) return getSectionImageById(id);
   const key = normalizeBlogImageKey(heading);
-  return IPTV_BLOG_SECTION_IMAGES[key] ?? IPTV_BLOG_IMAGE_FALLBACK;
+  const raw = IPTV_BLOG_SECTION_IMAGES[key];
+  return raw ? pickAsset(raw) : pickAsset(IPTV_BLOG_IMAGE_FALLBACK);
 }
