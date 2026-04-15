@@ -3,22 +3,59 @@ import { SITE_URLS, externalTabProps } from "@/lib/site-urls";
 
 type Props = {
   content: LandingBuiltContent;
+  /** Absolute canonical URL for this landing (JSON-LD + consistency). */
+  canonicalUrl: string;
 };
 
-export default function SeoLandingPage({ content }: Props) {
-  const jsonLd = {
+export default function SeoLandingPage({ content, canonicalUrl }: Props) {
+  const faqMainEntity = content.faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  }));
+
+  const data = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: content.h1,
-    description: content.metaDescription,
-    isPartOf: { "@type": "WebSite", name: "ScopMedia" },
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${canonicalUrl}#webpage`,
+        name: content.h1,
+        description: content.metaDescription,
+        url: canonicalUrl,
+        isPartOf: { "@type": "WebSite", name: "ScopMedia" },
+      },
+      {
+        "@type": "Service",
+        name: content.h1,
+        description: content.metaDescription,
+        serviceType: "IPTV streaming subscription",
+        url: canonicalUrl,
+        provider: {
+          "@type": "Organization",
+          name: "ScopMedia",
+        },
+        areaServed: {
+          "@type": "Country",
+          name: "United Kingdom",
+        },
+      },
+      {
+        "@type": "FAQPage",
+        url: canonicalUrl,
+        mainEntity: faqMainEntity,
+      },
+    ],
   };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
       />
 
       <article itemScope itemType="https://schema.org/WebPage">

@@ -24,16 +24,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const fullTitle = guide
     ? buildMetaTitle(guide.title)
     : buildMetaTitle(slugToPageKeyword(slug));
+  const path = `/setup-guide/${slug}`;
   if (!guide) {
-    return { title: fullTitle };
+    return {
+      title: fullTitle,
+      alternates: { canonical: path },
+      robots: { index: true, follow: true },
+    };
   }
   return {
     title: fullTitle,
     description: guide.page.metaDescription,
+    alternates: { canonical: path },
+    robots: { index: true, follow: true },
     openGraph: {
       title: fullTitle,
       description: guide.page.metaDescription,
       type: "website",
+      url: path,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description: guide.page.metaDescription,
     },
   };
 }

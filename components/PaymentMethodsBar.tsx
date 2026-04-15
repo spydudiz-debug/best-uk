@@ -50,6 +50,7 @@ export default function PaymentMethodsBar() {
                   alt={alt}
                   width={80}
                   height={32}
+                  loading="lazy"
                   className="h-7 w-auto max-h-8 max-w-[72px] object-contain object-center brightness-0 invert opacity-[0.92] transition-[opacity,filter] duration-300 group-hover:opacity-100 sm:h-8 sm:max-w-[80px]"
                   unoptimized
                 />

@@ -10,6 +10,15 @@ export const metadata: Metadata = {
   title: buildMetaTitle(SETUP_GUIDE_HUB_KEYWORD),
   description:
     "Complete IPTV setup guide for Firestick, Smart TV, Android box, Windows PC & Formuler. How to install IPTV with step-by-step instructions and Xtream or M3U login.",
+  alternates: { canonical: "/setup-guide" },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: buildMetaTitle(SETUP_GUIDE_HUB_KEYWORD),
+    description:
+      "Complete IPTV setup guide for Firestick, Smart TV, Android box, Windows PC & Formuler. How to install IPTV with step-by-step instructions and Xtream or M3U login.",
+    url: "/setup-guide",
+    type: "website",
+  },
 };
 
 export default function SetupGuidePage() {

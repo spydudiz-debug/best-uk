@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import HomeFaqJsonLd from "@/components/seo/HomeFaqJsonLd";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CompatibilitySection from "@/components/CompatibilitySection";
@@ -9,6 +11,11 @@ import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
+};
+
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-page-gradient">
@@ -18,6 +25,7 @@ export default function Home() {
         <div className="absolute -right-[15%] bottom-[10%] h-[560px] w-[560px] rounded-full bg-cyan-500/[0.04] blur-[120px]" />
       </div>
 
+      <HomeFaqJsonLd />
       <Navbar />
       <main>
         <Hero />
