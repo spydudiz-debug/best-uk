@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SITE_META_TITLE } from "@/lib/site-meta-title";
+import { buildMetaTitle } from "@/lib/site-meta-title";
+import { slugToPageKeyword } from "@/lib/page-keyword-from-slug";
 import SetupGuideShell from "@/components/setup-guide/SetupGuideShell";
 import SeoLandingPage from "@/components/seo-landing/SeoLandingPage";
 import { buildLandingContent } from "@/data/seo-landings/build-landing-copy";
@@ -20,15 +21,17 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const def = getLandingBySlug(slug);
+  const keyword = def ? def.keyword : slugToPageKeyword(slug);
+  const fullTitle = buildMetaTitle(keyword);
   if (!def) {
-    return { title: SITE_META_TITLE };
+    return { title: fullTitle };
   }
   const c = buildLandingContent(def);
   return {
-    title: SITE_META_TITLE,
+    title: fullTitle,
     description: c.metaDescription,
     openGraph: {
-      title: SITE_META_TITLE,
+      title: fullTitle,
       description: c.metaDescription,
       type: "website",
     },

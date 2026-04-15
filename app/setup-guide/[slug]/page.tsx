@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SITE_META_TITLE } from "@/lib/site-meta-title";
+import { buildMetaTitle } from "@/lib/site-meta-title";
+import { slugToPageKeyword } from "@/lib/page-keyword-from-slug";
 import {
   getAllGuideSlugs,
   getGuideBySlug,
@@ -20,12 +21,20 @@ export async function generateStaticParams(): Promise<{ slug: SetupGuideSlug }[]
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const guide = getGuideBySlug(slug);
+  const fullTitle = guide
+    ? buildMetaTitle(guide.title)
+    : buildMetaTitle(slugToPageKeyword(slug));
   if (!guide) {
-    return { title: SITE_META_TITLE };
+    return { title: fullTitle };
   }
   return {
-    title: SITE_META_TITLE,
+    title: fullTitle,
     description: guide.page.metaDescription,
+    openGraph: {
+      title: fullTitle,
+      description: guide.page.metaDescription,
+      type: "website",
+    },
   };
 }
 
