@@ -1,4 +1,5 @@
 import { IPTV_BLOG_CARD_IMAGE } from "@/lib/iptv-blog-images";
+import { RESELLER_BLOG_HERO } from "@/lib/reseller-blog-images";
 
 export type BlogPostListItem = {
   slug: string;
@@ -24,6 +25,18 @@ export const BLOG_POSTS: BlogPostListItem[] = [
     metaTitle: "Best IPTV Boxes in 2026 – Top Streaming Devices",
     metaDescription:
       "Discover the best IPTV boxes in 2026. Compare Firestick, Nvidia Shield, Formuler & more. Start streaming today.",
+  },
+  {
+    slug: "iptv-reseller-uk-2026",
+    title: "Best IPTV Reseller UK 2026 — The Complete Guide",
+    excerpt:
+      "Learn how IPTV reseller panels work in the UK, how credits map to subscription length, and how to estimate profit before you buy reseller credits.",
+    datePublished: "2026-04-15",
+    readTime: "14 min read",
+    image: RESELLER_BLOG_HERO,
+    metaTitle: "Best IPTV Reseller UK 2026 – Earn Money with IPTV",
+    metaDescription:
+      "Start your IPTV reseller business in the UK. Buy reseller credits, earn profit, and grow your IPTV business today.",
   },
 ];
 

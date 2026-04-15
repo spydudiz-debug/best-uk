@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SetupGuideShell from "@/components/setup-guide/SetupGuideShell";
 import IptvBoxes2026Article from "@/components/blog/IptvBoxes2026Article";
+import ResellerUk2026Article from "@/components/blog/ResellerUk2026Article";
 import { getBlogPostBySlug, getAllBlogSlugs } from "@/data/blog-posts";
 
 type PageProps = {
@@ -41,6 +42,12 @@ export default async function BlogPostPage({ params }: PageProps) {
       return (
         <SetupGuideShell maxWidthClass="max-w-3xl">
           <IptvBoxes2026Article />
+        </SetupGuideShell>
+      );
+    case "iptv-reseller-uk-2026":
+      return (
+        <SetupGuideShell maxWidthClass="max-w-3xl">
+          <ResellerUk2026Article />
         </SetupGuideShell>
       );
     default:
