@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { SITE_META_TITLE } from "@/lib/site-meta-title";
 import {
   getAllGuideSlugs,
   getGuideBySlug,
@@ -20,10 +21,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const guide = getGuideBySlug(slug);
   if (!guide) {
-    return { title: "Setup Guide" };
+    return { title: SITE_META_TITLE };
   }
   return {
-    title: guide.page.metaTitle,
+    title: SITE_META_TITLE,
     description: guide.page.metaDescription,
   };
 }

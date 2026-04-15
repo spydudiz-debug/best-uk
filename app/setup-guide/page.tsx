@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { SITE_META_TITLE } from "@/lib/site-meta-title";
 import SetupGuideShell from "@/components/setup-guide/SetupGuideShell";
 import SetupGuideCardsGrid from "@/components/setup-guide/SetupGuideCardsGrid";
 
 export const metadata: Metadata = {
-  title: "IPTV Setup Guide",
+  title: SITE_META_TITLE,
   description:
     "Complete IPTV setup guide for Firestick, Smart TV, Android box, Windows PC & Formuler. How to install IPTV with step-by-step instructions and Xtream or M3U login.",
 };

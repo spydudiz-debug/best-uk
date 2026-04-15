@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { SITE_META_TITLE } from "@/lib/site-meta-title";
 import "./globals.css";
 
 const inter = Inter({
@@ -9,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ScopMedia | Best IPTV Subscription in 2026",
+  title: SITE_META_TITLE,
   description:
     "ScopMedia — premium IPTV streaming worldwide. 20,000+ channels, 130,000+ VOD, 99.9% uptime and 24/7 support. Smart TV, Firestick, mobile & more.",
 };

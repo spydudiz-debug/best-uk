@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { SITE_META_TITLE } from "@/lib/site-meta-title";
 import SetupGuideShell from "@/components/setup-guide/SetupGuideShell";
 import SeoLandingPage from "@/components/seo-landing/SeoLandingPage";
 import { buildLandingContent } from "@/data/seo-landings/build-landing-copy";
@@ -20,14 +21,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const def = getLandingBySlug(slug);
   if (!def) {
-    return { title: "ScopMedia" };
+    return { title: SITE_META_TITLE };
   }
   const c = buildLandingContent(def);
   return {
-    title: c.metaTitle,
+    title: SITE_META_TITLE,
     description: c.metaDescription,
     openGraph: {
-      title: c.metaTitle,
+      title: SITE_META_TITLE,
       description: c.metaDescription,
       type: "website",
     },
