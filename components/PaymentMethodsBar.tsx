@@ -25,6 +25,12 @@ const PAYMENT_METHODS = [
     file: "applepay",
     alt: "Apple Pay logo",
   },
+  {
+    id: "febricoin",
+    label: "Febricoin",
+    file: "febricoin",
+    alt: "Febricoin logo",
+  },
 ] as const;
 
 export default function PaymentMethodsBar() {
