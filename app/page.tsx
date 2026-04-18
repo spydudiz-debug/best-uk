@@ -33,14 +33,18 @@ export default function Home() {
         <Hero />
         <section className="relative border-y border-white/[0.06] bg-slate-950/40 backdrop-blur-[2px]">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <p className="mb-1 pt-8 text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-body-muted sm:mb-2 sm:pt-10">
-              Included channels &amp; networks
-            </p>
-            <p className="mx-auto mb-6 max-w-xl text-center text-sm text-body sm:mb-8">
-              A sample of live channels and apps you can stream — smooth playback,
-              premium layout.
-            </p>
-            <LogoScroller logos={CHANNEL_LOGOS} />
+            <header className="pt-8 text-center sm:pt-10">
+              <h2 className="mx-auto max-w-4xl text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl sm:leading-snug lg:text-4xl lg:leading-tight">
+                Premium IPTV Channels List – Sports, Movies &amp; Entertainment
+              </h2>
+              <h3 className="mx-auto mt-3 max-w-3xl text-lg font-medium leading-snug text-body sm:mt-4 sm:text-xl lg:mt-5 lg:text-2xl lg:leading-relaxed">
+                Watch Netflix, Amazon Prime, Disney+, HBO &amp; 10,000+ Channels
+                Worldwide
+              </h3>
+            </header>
+            <div className="mt-8 sm:mt-10">
+              <LogoScroller logos={CHANNEL_LOGOS} />
+            </div>
             <div className="h-8 sm:h-10" aria-hidden />
           </div>
         </section>
