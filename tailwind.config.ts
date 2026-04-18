@@ -58,10 +58,22 @@ const config: Config = {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
+        /** Seamless marquee: track is duplicated; move exactly one half (-50% own width). */
+        scrollMarquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        scrollMarqueeReverse: {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
       },
       animation: {
         float: "float 6s ease-in-out infinite",
         "pulse-soft": "pulseSoft 2s ease-in-out infinite",
+        "scroll-marquee": "scrollMarquee var(--marquee-duration, 40s) linear infinite",
+        "scroll-marquee-reverse":
+          "scrollMarqueeReverse var(--marquee-duration, 40s) linear infinite",
       },
     },
   },

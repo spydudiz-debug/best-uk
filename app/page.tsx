@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import HomeFaqJsonLd from "@/components/seo/HomeFaqJsonLd";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import LogoScroller from "@/components/LogoScroller";
 import CompatibilitySection from "@/components/CompatibilitySection";
+import { CHANNEL_LOGOS } from "@/data/channel-logos";
 import DeviceSupport from "@/components/DeviceSupport";
 import Features from "@/components/Features";
 import Pricing from "@/components/Pricing";
@@ -29,6 +31,19 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <section className="relative border-y border-white/[0.06] bg-slate-950/40 backdrop-blur-[2px]">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p className="mb-1 pt-8 text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-body-muted sm:mb-2 sm:pt-10">
+              Included channels &amp; networks
+            </p>
+            <p className="mx-auto mb-6 max-w-xl text-center text-sm text-body sm:mb-8">
+              A sample of live channels and apps you can stream — smooth playback,
+              premium layout.
+            </p>
+            <LogoScroller logos={CHANNEL_LOGOS} />
+            <div className="h-8 sm:h-10" aria-hidden />
+          </div>
+        </section>
         <CompatibilitySection />
         <DeviceSupport />
         <Features />
