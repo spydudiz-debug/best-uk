@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import type { CSSProperties } from "react";
 
 export type LogoScrollerItem = {
@@ -23,28 +26,40 @@ export type LogoScrollerProps = {
   className?: string;
 };
 
-const LOGO_WIDTH = 160;
-const LOGO_HEIGHT = 56;
+const IMG_WIDTH = 200;
+const IMG_HEIGHT = 80;
 
 function LogoTile({ item }: { item: LogoScrollerItem }) {
+  const [broken, setBroken] = useState(false);
+
   return (
     <div
-      className="group/tile relative shrink-0 select-none"
+      className="group/tile flex w-[132px] shrink-0 flex-col items-center gap-1.5 sm:w-[148px] md:w-[164px]"
       title={item.name}
     >
-      <div className="relative flex h-9 w-[120px] items-center justify-center overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.02] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition-[transform,box-shadow,filter] duration-300 ease-out will-change-transform sm:h-10 sm:w-[136px] md:h-11 md:w-[152px] md:rounded-2xl">
-        <Image
-          src={item.src}
-          alt=""
-          width={LOGO_WIDTH}
-          height={LOGO_HEIGHT}
-          sizes="(max-width: 640px) 120px, (max-width: 768px) 136px, 152px"
-          loading="lazy"
-          decoding="async"
-          unoptimized
-          className="h-full w-auto max-w-full object-contain object-center grayscale opacity-85 transition-[filter,opacity,transform] duration-300 ease-out group-hover/tile:scale-[1.06] group-hover/tile:opacity-100 group-hover/tile:grayscale-0 group-hover/tile:drop-shadow-[0_0_18px_rgba(0,229,255,0.22)]"
-        />
+      <div className="relative flex h-11 w-full items-center justify-center overflow-hidden rounded-xl border border-black/[0.08] bg-white/[0.94] px-2 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] transition-[transform,box-shadow,filter] duration-300 ease-out will-change-transform sm:h-12 md:h-[3.25rem] md:rounded-2xl">
+        {broken ? (
+          <span className="line-clamp-3 text-center text-[9px] font-semibold leading-snug text-slate-900 sm:text-[10px]">
+            {item.name}
+          </span>
+        ) : (
+          <Image
+            src={item.src}
+            alt={item.name}
+            width={IMG_WIDTH}
+            height={IMG_HEIGHT}
+            sizes="(max-width: 640px) 132px, (max-width: 768px) 148px, 164px"
+            loading="lazy"
+            decoding="async"
+            unoptimized
+            onError={() => setBroken(true)}
+            className="h-full w-auto max-h-full max-w-full object-contain object-center grayscale opacity-90 transition-[filter,opacity,transform] duration-300 ease-out group-hover/tile:scale-[1.05] group-hover/tile:opacity-100 group-hover/tile:grayscale-0 group-hover/tile:drop-shadow-[0_2px_12px_rgba(15,23,42,0.12)]"
+          />
+        )}
       </div>
+      <span className="max-w-full truncate text-center text-[9px] font-medium leading-tight text-body-muted sm:text-[10px] md:text-xs">
+        {item.name}
+      </span>
     </div>
   );
 }
@@ -64,7 +79,7 @@ function MarqueeTrack({
 
   return (
     <div
-      className={`flex w-max flex-nowrap items-center gap-6 sm:gap-8 md:gap-10 ${
+      className={`flex w-max flex-nowrap items-start gap-5 sm:gap-7 md:gap-8 ${
         reverse ? "animate-scroll-marquee-reverse" : "animate-scroll-marquee"
       } ${pauseOnHover ? "group-hover:[animation-play-state:paused]" : ""} will-change-transform motion-reduce:!animate-none`}
       style={
@@ -101,7 +116,7 @@ export default function LogoScroller({
       aria-label={`Featured channels: ${names}`}
     >
       <p className="sr-only">
-        Channel logos shown for illustration: {names}.
+        Channel logos: {names}.
       </p>
 
       <div className="relative overflow-hidden py-2 sm:py-3">

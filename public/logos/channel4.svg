@@ -1,10 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="160" height="56" viewBox="0 0 160 56" fill="none" role="img" aria-label="Channel 4">
-  <rect x="1" y="1" width="158" height="54" rx="10" fill="#0B1220" stroke="url(#g4)" stroke-width="1.5"/>
-  <defs>
-    <linearGradient id="g4" x1="0" y1="0" x2="160" y2="56" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#A78BFA" stop-opacity="0.5"/>
-      <stop offset="1" stop-color="#22D3EE" stop-opacity="0.4"/>
-    </linearGradient>
-  </defs>
-  <text x="80" y="30" text-anchor="middle" font-family="system-ui,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#F8FAFC">Channel 4</text>
-</svg>
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Channel 4</title><path d="m14.309 0-.33.412v4.201l2.382-2.95zm-1.155 1.201L10.707 4.22v8.674h2.447zm3.268 1.701-2.443 3.02v14.81h2.443zM9.887 5.236l-6.201 7.657h3.142L9.887 9.12Zm-6.766 8.48v2.444h10.033v-2.443Zm14.125 0v2.444h3.633v-2.443Zm-6.539 3.268V24h2.443v-7.016Zm-3.271 4.573V24h2.443v-2.443zm6.543 0V24h5.189v-2.443z"/></svg>

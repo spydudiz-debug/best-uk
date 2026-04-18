@@ -7,13 +7,15 @@
     "dev:turbo": "next dev --turbopack --hostname 127.0.0.1 --port 3030",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3030",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync-logos": "node scripts/sync-channel-logos.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.15.0",
     "next": "^15.1.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "simple-icons": "^16.16.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
